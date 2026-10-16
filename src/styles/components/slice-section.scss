@@ -1,0 +1,18 @@
+// Full-bleed media slot on the section (sibling of .container). Absolute
+// siblings paint above in-flow content; .slice-section__content raises it.
+.slice-section__background {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.slice-section__content {
+  position: relative;
+  z-index: 1;
+}
+
+.slice-section--panel {
+  overflow: hidden;
+}

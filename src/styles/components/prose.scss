@@ -1,0 +1,75 @@
+// Editorial rich text. Headings get type classes from Prose.jsx; element
+// selectors here are only for rhythm, lists and links.
+
+.prose {
+  max-width: var(--measure);
+  line-height: normal;
+
+  > * + * {
+    margin-top: var(--size-3);
+  }
+
+  > * + h2 {
+    margin-top: var(--size-8);
+  }
+
+  > * + h3,
+  > * + h4 {
+    margin-top: var(--size-6);
+  }
+
+  // Links must stay identifiable without relying on color alone (WCAG 1.4.1).
+  a {
+    color: var(--col-brand);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+    text-decoration-thickness: 1px;
+
+    @media (hover: hover) and (pointer: fine) {
+      &:hover {
+        color: color-mix(in srgb, var(--col-brand) 80%, var(--col-black));
+      }
+    }
+  }
+
+  ul,
+  ol {
+    padding-left: var(--size-3);
+  }
+
+  ul {
+    list-style: disc;
+  }
+
+  ol {
+    list-style: decimal;
+  }
+
+  li + li {
+    margin-top: var(--size-1);
+  }
+
+  strong {
+    font-weight: 600;
+  }
+
+  pre {
+    padding: var(--size-3);
+    overflow-x: auto;
+    font-family: ui-monospace, monospace;
+    font-size: var(--font-size-text-small);
+    background-color: var(--col-background-2);
+  }
+
+  img {
+    width: 100%;
+  }
+}
+
+.prose__figure {
+  figcaption {
+    margin-top: var(--size-1);
+    font-size: var(--font-size-text-small);
+    color: var(--col-text-muted);
+  }
+}

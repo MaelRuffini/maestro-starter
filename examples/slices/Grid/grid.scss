@@ -1,0 +1,103 @@
+@use 'base/breakpoints' as *;
+
+.grid__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--size-5) * 2);
+}
+
+.grid__title {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  text-align: center;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.grid__list {
+  display: grid;
+  grid-template-columns: repeat(var(--x-columns), minmax(0, 1fr));
+  align-items: stretch;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow: visible;
+}
+
+.grid__list--2 {
+  --x-columns: 2;
+}
+
+.grid__list--3 {
+  --x-columns: 3;
+}
+
+.grid__list--4 {
+  --x-columns: 4;
+}
+
+.grid__item {
+  display: flex;
+  min-width: 0;
+  margin-inline: calc(var(--size-1) * -0.5);
+}
+
+.grid__card {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--size-4);
+  width: 100%;
+  min-height: 17.75rem;
+  padding: var(--size-5) var(--size-4) var(--size-4);
+  overflow: hidden;
+  border-radius: var(--radius-main);
+  background-color: var(--col-background);
+  color: var(--col-text);
+}
+
+.grid__card--light {
+  background-color: var(--col-background-2);
+}
+
+.grid__item:nth-child(odd) .grid__card {
+  transform: rotate(2deg);
+}
+
+.grid__item:nth-child(even) .grid__card {
+  transform: rotate(-2deg);
+}
+
+.grid__stat {
+  color: var(--col-button-background);
+}
+
+.grid__card.u-theme-light .grid__stat {
+  color: var(--col-text);
+}
+
+.grid__description {
+  max-width: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grid__item:nth-child(odd) .grid__card,
+  .grid__item:nth-child(even) .grid__card {
+    transform: none;
+  }
+}
+
+@media (max-width: $bp-tablet-max) {
+  .grid__list {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+  }
+
+  .grid__item {
+    width: 100%;
+    max-width: 17.75rem;
+    margin-inline: 0;
+  }
+}

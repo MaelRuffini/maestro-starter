@@ -1,0 +1,42 @@
+// Fluid root font-size: every `rem` in the project scales with the viewport.
+// Each layout is designed at one width and the root size is a straight line
+// between the ends of its breakpoint range, so 1rem = 16px exactly at the
+// design width and the design's proportions hold across the range:
+//   mobile  (< 480)      designed at 390   → 9.5px at 240, 16px at 390, 19.5px at 479
+//   tablet  (480–991)    designed at 992   → 7.5px at 480, 16px at 991
+//   desktop (≥ 992)      designed at 1440  → 11px at 992, 16px from 1440 up
+// Breakpoints here intentionally mirror breakpoints.scss ($bp-mobile, $bp-tablet).
+
+html {
+  font-size: 10px;
+}
+
+@media (min-width: 240px) {
+  html {
+    font-size: calc(9.5px + 6.5 * ((100vw - 240px) / 150));
+  }
+}
+
+@media (min-width: 390px) {
+  html {
+    font-size: calc(16px + 3.5 * ((100vw - 390px) / 90));
+  }
+}
+
+@media (min-width: 480px) {
+  html {
+    font-size: calc(7.53px + 8.47 * ((100vw - 480px) / 512));
+  }
+}
+
+@media (min-width: 992px) {
+  html {
+    font-size: calc(11.02px + 4.98 * ((100vw - 992px) / 448));
+  }
+}
+
+@media (min-width: 1440px) {
+  html {
+    font-size: 16px;
+  }
+}

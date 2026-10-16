@@ -1,0 +1,14 @@
+.setup-notice__steps {
+  list-style: decimal;
+  padding-left: var(--size-3);
+  margin-top: var(--size-3);
+  display: grid;
+  gap: var(--size-1);
+  max-width: var(--measure);
+
+  code {
+    font-family: ui-monospace, monospace;
+    background-color: var(--col-background-2);
+    padding: 0 var(--size-1);
+  }
+}

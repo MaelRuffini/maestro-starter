@@ -1,0 +1,487 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "slice_type": "articles",
+    "variation": "default",
+    "version": "initial",
+    "id": "mock-articles-default",
+    "items": [],
+    "primary": {
+      "settings": [
+        {
+          "padding_top": "Main (128px)",
+          "padding_bottom": "Main (128px)",
+          "theme": "Inherit",
+          "panel_animation": false
+        }
+      ],
+      "title": [
+        {
+          "type": "heading2",
+          "text": "Le journal",
+          "spans": []
+        }
+      ],
+      "sort": "Newest first",
+      "limit": null
+    },
+    "fixtures": {
+      "article": [
+        {
+          "id": "mock-article-1",
+          "uid": "repenser-onboarding",
+          "type": "article",
+          "href": "",
+          "tags": [],
+          "first_publication_date": "2026-01-10T09:00:00+0000",
+          "last_publication_date": "2026-01-10T09:00:00+0000",
+          "slugs": [
+            "repenser-onboarding"
+          ],
+          "linked_documents": [],
+          "lang": "fr-fr",
+          "alternate_languages": [],
+          "url": "/blog/repenser-onboarding",
+          "data": {
+            "title": [
+              {
+                "type": "heading1",
+                "text": "Repenser l’onboarding : trois leçons tirées du terrain",
+                "spans": []
+              }
+            ],
+            "cover": {
+              "url": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&h=800",
+              "alt": "",
+              "dimensions": {
+                "width": 1200,
+                "height": 800
+              },
+              "copyright": null,
+              "id": "mock-article-1-cover",
+              "edit": {
+                "x": 0,
+                "y": 0,
+                "zoom": 1,
+                "background": "transparent"
+              }
+            },
+            "excerpt": [
+              {
+                "type": "paragraph",
+                "text": "Ce que six mois d’entretiens avec des équipes RH nous ont appris sur les premiers jours d’un collaborateur.",
+                "spans": []
+              }
+            ],
+            "published_at": "2026-03-02",
+            "slices": [],
+            "meta_title": null,
+            "meta_description": null,
+            "meta_image": {}
+          }
+        },
+        {
+          "id": "mock-article-2",
+          "uid": "mesurer-impact-site",
+          "type": "article",
+          "href": "",
+          "tags": [],
+          "first_publication_date": "2026-01-10T09:00:00+0000",
+          "last_publication_date": "2026-01-10T09:00:00+0000",
+          "slugs": [
+            "mesurer-impact-site"
+          ],
+          "linked_documents": [],
+          "lang": "fr-fr",
+          "alternate_languages": [],
+          "url": "/blog/mesurer-impact-site",
+          "data": {
+            "title": [
+              {
+                "type": "heading1",
+                "text": "Mesurer l’impact d’un site vitrine sans tableau de bord usine à gaz",
+                "spans": []
+              }
+            ],
+            "cover": {
+              "url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&h=800",
+              "alt": "",
+              "dimensions": {
+                "width": 1200,
+                "height": 800
+              },
+              "copyright": null,
+              "id": "mock-article-2-cover",
+              "edit": {
+                "x": 0,
+                "y": 0,
+                "zoom": 1,
+                "background": "transparent"
+              }
+            },
+            "excerpt": [
+              {
+                "type": "paragraph",
+                "text": "Quatre indicateurs suffisent. Les autres vous font perdre du temps.",
+                "spans": []
+              }
+            ],
+            "published_at": "2026-02-17",
+            "slices": [],
+            "meta_title": null,
+            "meta_description": null,
+            "meta_image": {}
+          }
+        },
+        {
+          "id": "mock-article-3",
+          "uid": "rgaa-un-brief",
+          "type": "article",
+          "href": "",
+          "tags": [],
+          "first_publication_date": "2026-01-10T09:00:00+0000",
+          "last_publication_date": "2026-01-10T09:00:00+0000",
+          "slugs": [
+            "rgaa-un-brief"
+          ],
+          "linked_documents": [],
+          "lang": "fr-fr",
+          "alternate_languages": [],
+          "url": "/blog/rgaa-un-brief",
+          "data": {
+            "title": [
+              {
+                "type": "heading1",
+                "text": "Accessibilité : le RGAA n’est pas une contrainte, c’est un brief",
+                "spans": []
+              }
+            ],
+            "cover": {
+              "url": "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1200&h=800",
+              "alt": "",
+              "dimensions": {
+                "width": 1200,
+                "height": 800
+              },
+              "copyright": null,
+              "id": "mock-article-3-cover",
+              "edit": {
+                "x": 0,
+                "y": 0,
+                "zoom": 1,
+                "background": "transparent"
+              }
+            },
+            "excerpt": [
+              {
+                "type": "paragraph",
+                "text": "Pourquoi partir du RGAA produit de meilleures interfaces, et pas seulement des interfaces conformes.",
+                "spans": []
+              }
+            ],
+            "published_at": "2026-01-28",
+            "slices": [],
+            "meta_title": null,
+            "meta_description": null,
+            "meta_image": {}
+          }
+        },
+        {
+          "id": "mock-article-4",
+          "uid": "figma-code-mesurer",
+          "type": "article",
+          "href": "",
+          "tags": [],
+          "first_publication_date": "2026-01-10T09:00:00+0000",
+          "last_publication_date": "2026-01-10T09:00:00+0000",
+          "slugs": [
+            "figma-code-mesurer"
+          ],
+          "linked_documents": [],
+          "lang": "fr-fr",
+          "alternate_languages": [],
+          "url": "/blog/figma-code-mesurer",
+          "data": {
+            "title": [
+              {
+                "type": "heading1",
+                "text": "Figma → code : mesurer les boîtes plutôt que copier l’auto-layout",
+                "spans": []
+              }
+            ],
+            "cover": {
+              "url": "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=1200&h=800",
+              "alt": "",
+              "dimensions": {
+                "width": 1200,
+                "height": 800
+              },
+              "copyright": null,
+              "id": "mock-article-4-cover",
+              "edit": {
+                "x": 0,
+                "y": 0,
+                "zoom": 1,
+                "background": "transparent"
+              }
+            },
+            "excerpt": [
+              {
+                "type": "paragraph",
+                "text": "La méthode que nous appliquons pour traduire une maquette sans importer ses raccourcis.",
+                "spans": []
+              }
+            ],
+            "published_at": "2026-01-10",
+            "slices": [],
+            "meta_title": null,
+            "meta_description": null,
+            "meta_image": {}
+          }
+        }
+      ]
+    }
+  },
+  {
+    "__TYPE__": "SharedSliceContent",
+    "slice_type": "articles",
+    "variation": "related",
+    "version": "initial",
+    "id": "mock-articles-related",
+    "items": [],
+    "primary": {
+      "settings": [
+        {
+          "padding_top": "Main (128px)",
+          "padding_bottom": "Main (128px)",
+          "theme": "Inherit",
+          "panel_animation": false
+        }
+      ],
+      "title": [
+        {
+          "type": "heading2",
+          "text": "À lire ensuite",
+          "spans": []
+        }
+      ],
+      "limit": 3
+    },
+    "fixtures": {
+      "article": [
+        {
+          "id": "mock-article-1",
+          "uid": "repenser-onboarding",
+          "type": "article",
+          "href": "",
+          "tags": [],
+          "first_publication_date": "2026-01-10T09:00:00+0000",
+          "last_publication_date": "2026-01-10T09:00:00+0000",
+          "slugs": [
+            "repenser-onboarding"
+          ],
+          "linked_documents": [],
+          "lang": "fr-fr",
+          "alternate_languages": [],
+          "url": "/blog/repenser-onboarding",
+          "data": {
+            "title": [
+              {
+                "type": "heading1",
+                "text": "Repenser l’onboarding : trois leçons tirées du terrain",
+                "spans": []
+              }
+            ],
+            "cover": {
+              "url": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&h=800",
+              "alt": "",
+              "dimensions": {
+                "width": 1200,
+                "height": 800
+              },
+              "copyright": null,
+              "id": "mock-article-1-cover",
+              "edit": {
+                "x": 0,
+                "y": 0,
+                "zoom": 1,
+                "background": "transparent"
+              }
+            },
+            "excerpt": [
+              {
+                "type": "paragraph",
+                "text": "Ce que six mois d’entretiens avec des équipes RH nous ont appris sur les premiers jours d’un collaborateur.",
+                "spans": []
+              }
+            ],
+            "published_at": "2026-03-02",
+            "slices": [],
+            "meta_title": null,
+            "meta_description": null,
+            "meta_image": {}
+          }
+        },
+        {
+          "id": "mock-article-2",
+          "uid": "mesurer-impact-site",
+          "type": "article",
+          "href": "",
+          "tags": [],
+          "first_publication_date": "2026-01-10T09:00:00+0000",
+          "last_publication_date": "2026-01-10T09:00:00+0000",
+          "slugs": [
+            "mesurer-impact-site"
+          ],
+          "linked_documents": [],
+          "lang": "fr-fr",
+          "alternate_languages": [],
+          "url": "/blog/mesurer-impact-site",
+          "data": {
+            "title": [
+              {
+                "type": "heading1",
+                "text": "Mesurer l’impact d’un site vitrine sans tableau de bord usine à gaz",
+                "spans": []
+              }
+            ],
+            "cover": {
+              "url": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&h=800",
+              "alt": "",
+              "dimensions": {
+                "width": 1200,
+                "height": 800
+              },
+              "copyright": null,
+              "id": "mock-article-2-cover",
+              "edit": {
+                "x": 0,
+                "y": 0,
+                "zoom": 1,
+                "background": "transparent"
+              }
+            },
+            "excerpt": [
+              {
+                "type": "paragraph",
+                "text": "Quatre indicateurs suffisent. Les autres vous font perdre du temps.",
+                "spans": []
+              }
+            ],
+            "published_at": "2026-02-17",
+            "slices": [],
+            "meta_title": null,
+            "meta_description": null,
+            "meta_image": {}
+          }
+        },
+        {
+          "id": "mock-article-3",
+          "uid": "rgaa-un-brief",
+          "type": "article",
+          "href": "",
+          "tags": [],
+          "first_publication_date": "2026-01-10T09:00:00+0000",
+          "last_publication_date": "2026-01-10T09:00:00+0000",
+          "slugs": [
+            "rgaa-un-brief"
+          ],
+          "linked_documents": [],
+          "lang": "fr-fr",
+          "alternate_languages": [],
+          "url": "/blog/rgaa-un-brief",
+          "data": {
+            "title": [
+              {
+                "type": "heading1",
+                "text": "Accessibilité : le RGAA n’est pas une contrainte, c’est un brief",
+                "spans": []
+              }
+            ],
+            "cover": {
+              "url": "https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=1200&h=800",
+              "alt": "",
+              "dimensions": {
+                "width": 1200,
+                "height": 800
+              },
+              "copyright": null,
+              "id": "mock-article-3-cover",
+              "edit": {
+                "x": 0,
+                "y": 0,
+                "zoom": 1,
+                "background": "transparent"
+              }
+            },
+            "excerpt": [
+              {
+                "type": "paragraph",
+                "text": "Pourquoi partir du RGAA produit de meilleures interfaces, et pas seulement des interfaces conformes.",
+                "spans": []
+              }
+            ],
+            "published_at": "2026-01-28",
+            "slices": [],
+            "meta_title": null,
+            "meta_description": null,
+            "meta_image": {}
+          }
+        },
+        {
+          "id": "mock-article-4",
+          "uid": "figma-code-mesurer",
+          "type": "article",
+          "href": "",
+          "tags": [],
+          "first_publication_date": "2026-01-10T09:00:00+0000",
+          "last_publication_date": "2026-01-10T09:00:00+0000",
+          "slugs": [
+            "figma-code-mesurer"
+          ],
+          "linked_documents": [],
+          "lang": "fr-fr",
+          "alternate_languages": [],
+          "url": "/blog/figma-code-mesurer",
+          "data": {
+            "title": [
+              {
+                "type": "heading1",
+                "text": "Figma → code : mesurer les boîtes plutôt que copier l’auto-layout",
+                "spans": []
+              }
+            ],
+            "cover": {
+              "url": "https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?auto=format&fit=crop&w=1200&h=800",
+              "alt": "",
+              "dimensions": {
+                "width": 1200,
+                "height": 800
+              },
+              "copyright": null,
+              "id": "mock-article-4-cover",
+              "edit": {
+                "x": 0,
+                "y": 0,
+                "zoom": 1,
+                "background": "transparent"
+              }
+            },
+            "excerpt": [
+              {
+                "type": "paragraph",
+                "text": "La méthode que nous appliquons pour traduire une maquette sans importer ses raccourcis.",
+                "spans": []
+              }
+            ],
+            "published_at": "2026-01-10",
+            "slices": [],
+            "meta_title": null,
+            "meta_description": null,
+            "meta_image": {}
+          }
+        }
+      ]
+    }
+  }
+]

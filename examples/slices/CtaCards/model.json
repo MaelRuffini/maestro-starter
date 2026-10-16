@@ -1,0 +1,197 @@
+{
+  "id": "cta_cards",
+  "name": "CtaCards",
+  "type": "SharedSlice",
+  "variations": [
+    {
+      "description": "Default",
+      "docURL": "",
+      "id": "default",
+      "imageUrl": "",
+      "name": "Default",
+      "primary": {
+        "settings": {
+          "config": {
+            "fields": {
+              "padding_top": {
+                "config": {
+                  "default_value": "Main (128px)",
+                  "label": "Padding top",
+                  "options": [
+                    "None",
+                    "Small (64px)",
+                    "Main (128px)",
+                    "Large (160px)",
+                    "Page top (184px)"
+                  ]
+                },
+                "type": "Select"
+              },
+              "padding_bottom": {
+                "config": {
+                  "default_value": "Main (128px)",
+                  "label": "Padding bottom",
+                  "options": [
+                    "None",
+                    "Small (64px)",
+                    "Main (128px)",
+                    "Large (160px)",
+                    "Page top (184px)"
+                  ]
+                },
+                "type": "Select"
+              },
+              "theme": {
+                "config": {
+                  "default_value": "Inherit",
+                  "label": "Theme",
+                  "options": [
+                    "Inherit",
+                    "Light",
+                    "Dark",
+                    "Brand"
+                  ]
+                },
+                "type": "Select"
+              },
+              "panel_animation": {
+                "config": {
+                  "label": "Panel animation",
+                  "placeholder_false": "Off",
+                  "placeholder_true": "On"
+                },
+                "type": "Boolean"
+              }
+            },
+            "label": "Settings",
+            "repeat": false
+          },
+          "type": "Group"
+        },
+        "left_card": {
+          "config": {
+            "fields": {
+              "theme": {
+                "config": {
+                  "default_value": "Brand",
+                  "label": "Theme",
+                  "options": [
+                    "Brand",
+                    "Dark",
+                    "Light"
+                  ]
+                },
+                "type": "Select"
+              },
+              "title": {
+                "config": {
+                  "label": "Title",
+                  "single": "heading1,heading2,heading3,heading4,heading5,heading6"
+                },
+                "type": "StructuredText"
+              },
+              "description": {
+                "config": {
+                  "label": "Description",
+                  "multi": "paragraph,strong,em"
+                },
+                "type": "StructuredText"
+              },
+              "points": {
+                "config": {
+                  "label": "Checklist",
+                  "multi": "list-item",
+                  "placeholder": "One list item per row"
+                },
+                "type": "StructuredText"
+              },
+              "image": {
+                "config": {
+                  "label": "Image"
+                },
+                "type": "Image"
+              },
+              "cta": {
+                "config": {
+                  "allowText": true,
+                  "label": "Button",
+                  "variants": [
+                    "Primary",
+                    "Secondary",
+                    "Outline"
+                  ]
+                },
+                "type": "Link"
+              }
+            },
+            "label": "Left card",
+            "repeat": false
+          },
+          "type": "Group"
+        },
+        "right_card": {
+          "config": {
+            "fields": {
+              "theme": {
+                "config": {
+                  "default_value": "Dark",
+                  "label": "Theme",
+                  "options": [
+                    "Brand",
+                    "Dark",
+                    "Light"
+                  ]
+                },
+                "type": "Select"
+              },
+              "title": {
+                "config": {
+                  "label": "Title",
+                  "single": "heading1,heading2,heading3,heading4,heading5,heading6"
+                },
+                "type": "StructuredText"
+              },
+              "description": {
+                "config": {
+                  "label": "Description",
+                  "multi": "paragraph,strong,em"
+                },
+                "type": "StructuredText"
+              },
+              "points": {
+                "config": {
+                  "label": "Checklist",
+                  "multi": "list-item",
+                  "placeholder": "One list item per row"
+                },
+                "type": "StructuredText"
+              },
+              "image": {
+                "config": {
+                  "label": "Image"
+                },
+                "type": "Image"
+              },
+              "cta": {
+                "config": {
+                  "allowText": true,
+                  "label": "Button",
+                  "variants": [
+                    "Primary",
+                    "Secondary",
+                    "Outline"
+                  ]
+                },
+                "type": "Link"
+              }
+            },
+            "label": "Right card",
+            "repeat": false
+          },
+          "type": "Group"
+        }
+      },
+      "version": ""
+    }
+  ]
+}

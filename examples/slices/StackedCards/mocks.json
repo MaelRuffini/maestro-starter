@@ -1,0 +1,156 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "slice_type": "stacked_cards",
+    "variation": "default",
+    "version": "initial",
+    "id": "stacked-cards$mock-default",
+    "items": [],
+    "primary": {
+      "settings": [
+        {
+          "padding_top": "Main (128px)",
+          "padding_bottom": "Main (128px)",
+          "theme": "Inherit",
+          "panel_animation": false
+        }
+      ],
+      "title": [
+        {
+          "type": "heading2",
+          "text": "24 heures dans la vie\nd'un étudiant à l'EO Paris",
+          "spans": []
+        }
+      ],
+      "description": [
+        {
+          "type": "paragraph",
+          "text": "Voici comment se déroule vraiment une journée d'étudiante en 3ème année. Le déroulé réel de Lisa, un jeudi de mars, à EO Paris.",
+          "spans": []
+        }
+      ],
+      "cards": [
+        {
+          "image": {
+            "url": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format&w=1600&h=900&fit=crop",
+            "alt": "Étudiants autour d'une table basse au café du matin",
+            "dimensions": { "width": 1600, "height": 900 },
+            "copyright": null,
+            "id": "mock-stacked-card-1",
+            "edit": { "x": 0, "y": 0, "zoom": 1, "background": "transparent" }
+          },
+          "eyebrow": "8h00",
+          "title": "Le café du matin",
+          "description": [
+            {
+              "type": "paragraph",
+              "text": "Lisa arrive à 8h avec son café. Elle croise sa promo à l'entrée, 40 étudiants environ. Ambiance décontractée mais pro. Elle vérifie son planning : anatomie 8h30-10h30, TP palpation 10h45-12h30. Rentrer dans la journée doucement, ça compte.",
+              "spans": []
+            }
+          ]
+        },
+        {
+          "image": {
+            "url": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format&w=1600&h=900&fit=crop&sat=-20",
+            "alt": "Salle de TP, binôme en palpation dorso-lombaire",
+            "dimensions": { "width": 1600, "height": 900 },
+            "copyright": null,
+            "id": "mock-stacked-card-2",
+            "edit": { "x": 0, "y": 0, "zoom": 1, "background": "transparent" }
+          },
+          "eyebrow": "10h30",
+          "title": "Le TP palpation",
+          "description": [
+            {
+              "type": "paragraph",
+              "text": "Salle de TP, en binôme avec Karim. Aujourd'hui, palpation de la région dorso-lombaire. Le prof Marc circule, corrige, ajuste les gestes. 2h de pratique intensive, c'est là que Lisa apprend son métier. Pas d'écran, pas de livre. Juste ses mains sur un vrai corps.",
+              "spans": []
+            }
+          ]
+        },
+        {
+          "image": {
+            "url": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format&w=1600&h=900&fit=crop&sat=20",
+            "alt": "Étudiants déjeunant au foyer",
+            "dimensions": { "width": 1600, "height": 900 },
+            "copyright": null,
+            "id": "mock-stacked-card-3",
+            "edit": { "x": 0, "y": 0, "zoom": 1, "background": "transparent" }
+          },
+          "eyebrow": "12h30",
+          "title": "Le déjeuner au foyer",
+          "description": [
+            {
+              "type": "paragraph",
+              "text": "Lisa mange au foyer étudiant avec 4 camarades, 5 € le plat + entrée + dessert. Aujourd'hui, on parle de tout sauf des cours. Séries, sortie week-end, projet de mission humanitaire en Roumanie. C'est ici que se construit la promo, pas dans les amphis.",
+              "spans": []
+            }
+          ]
+        },
+        {
+          "image": {
+            "url": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format&w=1600&h=900&fit=crop&sharp=10",
+            "alt": "Consultation dans la clinique pédagogique",
+            "dimensions": { "width": 1600, "height": 900 },
+            "copyright": null,
+            "id": "mock-stacked-card-4",
+            "edit": { "x": 0, "y": 0, "zoom": 1, "background": "transparent" }
+          },
+          "eyebrow": "14h00",
+          "title": "Consultation à la clinique",
+          "description": [
+            {
+              "type": "paragraph",
+              "text": "Cette après-midi, Lisa a 2 consultations à la clinique pédagogique. Sa superviseure Sarah, ostéopathe DO depuis 12 ans, est présente dans la salle. Deux patientes aujourd'hui : une jeune femme avec des cervicalgies, une senior avec des lombalgies chroniques. 2h30 concentrées, sérieuses, formatrices.",
+              "spans": []
+            }
+          ]
+        },
+        {
+          "image": {
+            "url": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format&w=1600&h=900&fit=crop&sat=-40",
+            "alt": "Réunion de l'association Ostéo Sport",
+            "dimensions": { "width": 1600, "height": 900 },
+            "copyright": null,
+            "id": "mock-stacked-card-5",
+            "edit": { "x": 0, "y": 0, "zoom": 1, "background": "transparent" }
+          },
+          "eyebrow": "17h00",
+          "title": "Réunion de l'asso Ostéo Sport",
+          "description": [
+            {
+              "type": "paragraph",
+              "text": "17h-19h : Lisa est trésorière de l'asso Ostéo Sport. Aujourd'hui, préparation du marathon caritatif du mois prochain. 25 étudiants investis, réunions hebdo, budget de 8 000 € à gérer. C'est ici que se construit son CV extra-académique, et sa confiance en elle.",
+              "spans": []
+            }
+          ]
+        },
+        {
+          "image": {
+            "url": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format&w=1600&h=900&fit=crop&rect=0,0,1600,900",
+            "alt": "Soirée du BDE au foyer étudiant",
+            "dimensions": { "width": 1600, "height": 900 },
+            "copyright": null,
+            "id": "mock-stacked-card-6",
+            "edit": { "x": 0, "y": 0, "zoom": 1, "background": "transparent" }
+          },
+          "eyebrow": "19h30",
+          "title": "Soirée BDE au foyer",
+          "description": [
+            {
+              "type": "paragraph",
+              "text": "Vendredi soir, le BDE organise une soirée thème « années 90 ». 200 étudiants attendus, DJ étudiant, bar sans alcool + bar payant. Lisa passe une heure, retrouve sa promo dans une autre ambiance. Demain elle a match de rugby avec l'équipe de l'école, elle rentre tôt.",
+              "spans": []
+            }
+          ]
+        }
+      ],
+      "cta": {
+        "link_type": "Web",
+        "url": "https://example.com/jpo",
+        "text": "Je viens à la prochaine JPO",
+        "variant": "Primary"
+      }
+    }
+  }
+]

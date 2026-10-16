@@ -1,0 +1,102 @@
+@use 'base/breakpoints' as *;
+
+.faq__intro {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--size-4);
+}
+
+.faq__title {
+  width: 100%;
+  overflow-wrap: break-word;
+}
+
+.faq__description {
+  max-width: none;
+}
+
+.faq__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.faq__item {
+  border-radius: var(--size-4);
+  background-color: var(--col-background-2);
+}
+
+.faq__question {
+  display: flex;
+  align-items: center;
+  gap: var(--size-4);
+  padding: var(--size-3) var(--size-3) var(--size-3) var(--size-4);
+  cursor: pointer;
+  list-style: none;
+
+  &::-webkit-details-marker {
+    display: none;
+  }
+}
+
+.faq__question-text {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: break-word;
+}
+
+.faq__icon {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-5);
+  height: var(--size-5);
+  border-radius: var(--radius-round);
+  background-color: var(--col-button-background);
+  color: var(--col-button-text);
+}
+
+// The glyph is the upright "+"; 45° turns it into the "×" of the open state.
+// Keyed on the class, not [open]: FaqList keeps `open` set until the collapse
+// tween ends, and the icon has to turn back as soon as the row starts closing.
+.faq__icon-glyph {
+  transition: transform var(--transition-duration-fast) var(--transition-easing);
+}
+
+.faq__item--open .faq__icon-glyph {
+  transform: rotate(45deg);
+}
+
+// FaqList tweens this box between 0 and its auto height.
+.faq__content {
+  overflow: hidden;
+}
+
+// Keep the answer inside the question's text column instead of running under
+// the icon: icon + its gap + the card's right padding.
+.faq__answer {
+  max-width: none;
+  padding-right: calc(var(--size-5) + var(--size-4) + var(--size-3));
+  padding-bottom: var(--size-3);
+  padding-left: var(--size-4);
+}
+
+.faq--list-left .faq__row {
+  flex-direction: row-reverse;
+}
+
+@media (max-width: $bp-tablet-max) {
+  .faq__row {
+    row-gap: var(--size-6);
+  }
+
+  // Stacked, the intro still reads first.
+  .faq--list-left .faq__row {
+    flex-direction: row;
+  }
+}

@@ -1,0 +1,153 @@
+@use 'sass:math';
+@use './breakpoints' as *;
+
+// 12-column flex grid.
+// Centered lockup:
+//   .container > .row.justify-center > .col.col-lg-8.col-md-12
+// Asymmetric inset (offsets). ml/mr reset on mobile only, not tablet:
+//   .container > .row > .col.ml-1-col.col-lg-4.col-md-12
+// JSX class order: .col, then .ml/mr-N-col if any, then .col-lg-N, .col-md-N, .col-xs-N.
+// Column classes: .col-lg-N (default / desktop), .col-md-N (≤ tablet), .col-xs-N (≤ mobile).
+
+$columns: 12;
+
+@mixin col-classes($prefix) {
+  @for $i from 1 through $columns {
+    .col-#{$prefix}-#{$i} {
+      flex: 0 0 math.percentage(math.div($i, $columns));
+      max-width: math.percentage(math.div($i, $columns));
+    }
+  }
+}
+
+.container {
+  width: 100%;
+  padding: 0 var(--margin);
+  margin: 0 auto;
+  max-width: var(--container-max);
+}
+
+.container--full-width {
+  max-width: none;
+}
+
+// Wider than .container: same max-width, tighter side padding (--margin-large).
+.container--large {
+  padding: 0 var(--margin-large);
+}
+
+.container--no-padding {
+  max-width: none;
+  padding: 0;
+  margin: 0 auto;
+}
+
+// Inner container over full-bleed absolute media (Cover). Absolute siblings
+// paint above in-flow content; this joins the stacking layer above the image.
+.container--raised {
+  position: relative;
+  z-index: 1;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: stretch;
+  margin-left: calc(var(--gutter) * -0.5);
+  margin-right: calc(var(--gutter) * -0.5);
+}
+
+.row.row--reverse {
+  flex-direction: row-reverse;
+}
+
+.col {
+  box-sizing: border-box;
+  flex: 1;
+  min-width: 0;
+  padding-left: calc(var(--gutter) * 0.5);
+  padding-right: calc(var(--gutter) * 0.5);
+}
+
+@include col-classes('lg');
+
+.row.justify-center {
+  justify-content: center;
+}
+
+.row.justify-end,
+.row.justify-end-desktop {
+  justify-content: flex-end;
+}
+
+.row.justify-between {
+  justify-content: space-between;
+}
+
+.row.align-center {
+  align-items: center;
+}
+
+.row.align-end {
+  align-items: flex-end;
+}
+
+@for $i from 1 through 3 {
+  .mr-#{$i}-col {
+    margin-right: math.percentage(math.div($i, $columns));
+  }
+
+  .ml-#{$i}-col {
+    margin-left: math.percentage(math.div($i, $columns));
+  }
+}
+
+@media (max-width: $bp-tablet-max) {
+  @include col-classes('md');
+}
+
+@media (max-width: $bp-mobile) {
+  .container.container--no-padding {
+    padding: 0;
+  }
+
+  .row {
+    margin-left: calc(var(--gutter-mobile) * -0.5);
+    margin-right: calc(var(--gutter-mobile) * -0.5);
+  }
+
+  .row.row--reverse,
+  .row.row--reverse-mobile {
+    flex-direction: column-reverse;
+  }
+
+  .row.align-center.row--reverse {
+    flex-direction: row;
+  }
+
+  .col {
+    padding-left: calc(var(--gutter-mobile) * 0.5);
+    padding-right: calc(var(--gutter-mobile) * 0.5);
+  }
+
+  .col--desktop,
+  .xs-hide {
+    display: none;
+  }
+
+  @include col-classes('xs');
+
+  @for $i from 1 through 3 {
+    .mr-#{$i}-col {
+      margin-right: 0;
+    }
+
+    .ml-#{$i}-col {
+      margin-left: 0;
+    }
+  }
+
+  .row.justify-end-desktop {
+    justify-content: flex-start;
+  }
+}

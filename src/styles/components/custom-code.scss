@@ -1,0 +1,8 @@
+// Wrapper for Settings → Custom code (body end). `dangerouslySetInnerHTML`
+// needs an element, but the snippet should behave as if pasted straight
+// before </body>: no box of its own, children laid out as body children.
+// Not `display: none` — a widget that ships its own markup next to its
+// <script> would disappear.
+.custom-code {
+  display: contents;
+}

@@ -1,0 +1,22 @@
+// Design-grid overlay (Shift+G). Reuses `.container` / `.row` / `.col` so
+// columns line up with the live layout.
+
+.grid-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 90;
+  pointer-events: none;
+}
+
+.grid-overlay__wrapper {
+  padding: var(--size-3) 0;
+}
+
+.grid-overlay__cell {
+  height: calc(100dvh - var(--size-6));
+  width: 100%;
+  background-color: color-mix(in srgb, var(--col-brand) 20%, transparent);
+}

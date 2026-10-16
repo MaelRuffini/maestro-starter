@@ -1,0 +1,169 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "slice_type": "fifty_fifty",
+    "variation": "default",
+    "version": "initial",
+    "id": "fifty-fifty$mock-default",
+    "items": [],
+    "primary": {
+      "settings": [
+        {
+          "padding_top": "Main (128px)",
+          "padding_bottom": "Main (128px)",
+          "theme": "Inherit",
+          "panel_animation": false
+        }
+      ],
+      "title": [
+        {
+          "type": "heading2",
+          "text": "Ici, l'école ne s'arrête pas à 17h.",
+          "spans": []
+        }
+      ],
+      "description": [
+        {
+          "type": "paragraph",
+          "text": "Un BDE structuré, 30 associations actives, plus de 30 événements par an. La vie extra-académique fait partie intégrante du cursus, pas comme un supplément, comme un pilier. Voici comment ça marche.",
+          "spans": []
+        }
+      ],
+      "items": [
+        {
+          "image": {
+            "url": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format&w=800&h=800&fit=crop",
+            "alt": "Groupe d'étudiants souriant autour d'une table sur le campus",
+            "dimensions": { "width": 800, "height": 800 },
+            "copyright": null,
+            "id": "mock-fifty-fifty-1-main",
+            "edit": { "x": 0, "y": 0, "zoom": 1, "background": "transparent" }
+          },
+          "image_secondary": {
+            "url": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format&w=480&h=480&fit=crop&sat=-20",
+            "alt": "Étudiante travaillant sur un ordinateur portable",
+            "dimensions": { "width": 480, "height": 480 },
+            "copyright": null,
+            "id": "mock-fifty-fifty-1-secondary",
+            "edit": { "x": 0, "y": 0, "zoom": 1, "background": "transparent" }
+          },
+          "secondary_position": "Bottom right",
+          "title": "Le BDE, le moteur de la vie étudiante.",
+          "description": [
+            {
+              "type": "paragraph",
+              "text": "Notre BDE organise tout ce qui n'est pas du cours : WEI d'intégration, gala de fin d'année, tournois inter-écoles, soirées thématiques, marathons caritatifs.",
+              "spans": []
+            },
+            {
+              "type": "paragraph",
+              "text": "Élu chaque année par les étudiants, avec un vrai bureau et un vrai budget. C'est aussi eux qui accueillent les 1ère année à la rentrée, la meilleure introduction à l'ambiance de l'école.",
+              "spans": []
+            }
+          ]
+        },
+        {
+          "image": {
+            "url": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format&w=800&h=700&fit=crop&sat=20",
+            "alt": "Équipe de rugby de l'école en match sur un terrain en herbe",
+            "dimensions": { "width": 800, "height": 700 },
+            "copyright": null,
+            "id": "mock-fifty-fifty-2-main",
+            "edit": { "x": 0, "y": 0, "zoom": 1, "background": "transparent" }
+          },
+          "image_secondary": {
+            "url": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format&w=480&h=640&fit=crop&sharp=10",
+            "alt": "Portrait d'une étudiante concentrée derrière son écran",
+            "dimensions": { "width": 480, "height": 640 },
+            "copyright": null,
+            "id": "mock-fifty-fifty-2-secondary",
+            "edit": { "x": 0, "y": 0, "zoom": 1, "background": "transparent" }
+          },
+          "secondary_position": "Top right",
+          "title": "30 assos qui font vivre l'école.",
+          "description": [
+            {
+              "type": "paragraph",
+              "text": "Trente associations actives, réparties en quatre univers, le sport rassemble huit d'entre elles (rugby, running, escalade, danse…), la culture six (photo, cinéma, débats, journal étudiant), l'humanitaire cinq avec des missions annuelles en Roumanie, au Sénégal, en Bolivie. Et puis quatre autres autour de la recherche, pour ceux qui veulent aller plus loin sur l'ostéopathie basée sur les preuves.",
+              "spans": []
+            },
+            {
+              "type": "paragraph",
+              "text": "Chaque année, trois à cinq nouvelles associations émergent, portées par des étudiants qui n'ont pas trouvé ce qu'ils cherchaient et l'ont créé eux-mêmes. Tu n'as pas ton pôle idéal ? Tu montes le tien, on t'accompagne, on te finance, on te laisse faire.",
+              "spans": []
+            }
+          ]
+        },
+        {
+          "image": {
+            "url": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format&w=800&h=1000&fit=crop&sat=-30",
+            "alt": "Conférence étudiante dans un amphithéâtre en bois",
+            "dimensions": { "width": 800, "height": 1000 },
+            "copyright": null,
+            "id": "mock-fifty-fifty-3-main",
+            "edit": { "x": 0, "y": 0, "zoom": 1, "background": "transparent" }
+          },
+          "image_secondary": {
+            "url": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format&w=480&h=480&fit=crop&rect=0,0,480,480",
+            "alt": "Groupe d'étudiants prenant un selfie après un événement",
+            "dimensions": { "width": 480, "height": 480 },
+            "copyright": null,
+            "id": "mock-fifty-fifty-3-secondary",
+            "edit": { "x": 0, "y": 0, "zoom": 1, "background": "transparent" }
+          },
+          "secondary_position": "Bottom left",
+          "title": "Des événements qui sortent du campus.",
+          "description": [
+            {
+              "type": "paragraph",
+              "text": "Chaque année, une délégation d'EO Paris participe au Congrès EBP (Ostéopathie Basée sur les Preuves), rendez-vous incontournable de la profession, 300 professionnels réunis, publications récentes, débats scientifiques de haut niveau.",
+              "spans": []
+            },
+            {
+              "type": "paragraph",
+              "text": "Et puis, chaque novembre, deux cents d'entre eux enfilent leurs dossards au marathon de Paris pour lever des fonds au profit d'une association de patients.",
+              "spans": []
+            },
+            {
+              "type": "paragraph",
+              "text": "Ces événements-là ne sont pas dans ta scolarité officielle. Mais ce sont eux qui te construisent un réseau pro et une identité professionnelle, bien avant ton diplôme.",
+              "spans": []
+            }
+          ]
+        },
+        {
+          "image": {
+            "url": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format&w=800&h=700&fit=crop&sat=40",
+            "alt": "Joueurs de rugby de l'école se regroupant sur le terrain",
+            "dimensions": { "width": 800, "height": 700 },
+            "copyright": null,
+            "id": "mock-fifty-fifty-4-main",
+            "edit": { "x": 0, "y": 0, "zoom": 1, "background": "transparent" }
+          },
+          "image_secondary": {
+            "url": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format&w=480&h=640&fit=crop&rect=40,0,760,450",
+            "alt": "Passage voûté en pierre lors d'un voyage d'études",
+            "dimensions": { "width": 480, "height": 640 },
+            "copyright": null,
+            "id": "mock-fifty-fifty-4-secondary",
+            "edit": { "x": 0, "y": 0, "zoom": 1, "background": "transparent" }
+          },
+          "secondary_position": "Top right",
+          "title": "Des voyages organisés par l’école",
+          "description": [
+            {
+              "type": "paragraph",
+              "text": "L'ostéopathie est une profession mondiale. Notre programme international te permet de partir en 3ème ou 4ème année, dans une école partenaire de notre réseau.",
+              "spans": []
+            },
+            {
+              "type": "paragraph",
+              "text": "Erasmus en Europe, échanges hors Europe, missions humanitaires : trois façons de découvrir le métier ailleurs.",
+              "spans": []
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

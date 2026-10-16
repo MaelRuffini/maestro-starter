@@ -1,0 +1,116 @@
+@use 'base/breakpoints' as *;
+
+.marquee__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-8);
+}
+
+.marquee__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--size-4);
+  text-align: center;
+}
+
+.marquee__title {
+  width: 100%;
+}
+
+.marquee__description {
+  max-width: 34.75rem;
+}
+
+.marquee__tracks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-1);
+  width: 100%;
+  min-width: 0;
+}
+
+.marquee__viewport {
+  overflow: hidden;
+  width: 100%;
+  // Same fade as the Webflow gradient-mask marquee: images dissolve
+  // into the section background at the left and right edges.
+  // `black` / `transparent` here are mask alpha, not painted colors.
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 15%,
+    black 85%,
+    transparent
+  );
+}
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee-rtl calc(var(--transition-duration) * 50) linear infinite;
+}
+
+.marquee__viewport--ltr .marquee__track {
+  animation-name: marquee-ltr;
+}
+
+.marquee__list {
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--size-1);
+  margin: 0;
+  padding: 0;
+  padding-inline-end: var(--size-1);
+}
+
+.marquee__item {
+  flex-shrink: 0;
+  width: 21.167rem;
+}
+
+.marquee__image {
+  width: 100%;
+  max-width: none;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: var(--radius-small);
+}
+
+@keyframes marquee-rtl {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-ltr {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee__track {
+    animation-play-state: paused;
+  }
+}
+
+@media (max-width: $bp-tablet-max) {
+  .marquee__item {
+    width: 18rem;
+  }
+}
+
+@media (max-width: $bp-mobile) {
+  .marquee__item {
+    width: 16rem;
+  }
+}

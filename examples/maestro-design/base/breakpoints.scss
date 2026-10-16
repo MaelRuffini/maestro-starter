@@ -1,0 +1,8 @@
+// Canonical breakpoints. Import with `@use '@/styles/base/breakpoints' as *;`
+// and always query with these variables — never with literal pixel values.
+
+$bp-mobile: 480px; // mobile → tablet
+$bp-tablet: 992px; // tablet → desktop
+
+$bp-mobile-max: $bp-mobile - 1px; // 479px
+$bp-tablet-max: $bp-tablet - 1px; // 991px

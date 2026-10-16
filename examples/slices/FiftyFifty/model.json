@@ -1,0 +1,135 @@
+{
+  "id": "fifty_fifty",
+  "name": "FiftyFifty",
+  "type": "SharedSlice",
+  "variations": [
+    {
+      "description": "Default",
+      "docURL": "",
+      "id": "default",
+      "imageUrl": "",
+      "name": "Default",
+      "primary": {
+        "settings": {
+          "config": {
+            "fields": {
+              "padding_top": {
+                "config": {
+                  "default_value": "Main (128px)",
+                  "label": "Padding top",
+                  "options": [
+                    "None",
+                    "Small (64px)",
+                    "Main (128px)",
+                    "Large (160px)",
+                    "Page top (184px)"
+                  ]
+                },
+                "type": "Select"
+              },
+              "padding_bottom": {
+                "config": {
+                  "default_value": "Main (128px)",
+                  "label": "Padding bottom",
+                  "options": [
+                    "None",
+                    "Small (64px)",
+                    "Main (128px)",
+                    "Large (160px)",
+                    "Page top (184px)"
+                  ]
+                },
+                "type": "Select"
+              },
+              "theme": {
+                "config": {
+                  "default_value": "Inherit",
+                  "label": "Theme",
+                  "options": [
+                    "Inherit",
+                    "Light",
+                    "Dark",
+                    "Brand"
+                  ]
+                },
+                "type": "Select"
+              },
+              "panel_animation": {
+                "config": {
+                  "label": "Panel animation",
+                  "placeholder_false": "Off",
+                  "placeholder_true": "On"
+                },
+                "type": "Boolean"
+              }
+            },
+            "label": "Settings",
+            "repeat": false
+          },
+          "type": "Group"
+        },
+        "title": {
+          "config": {
+            "label": "Title",
+            "single": "heading1,heading2,heading3,heading4,heading5,heading6"
+          },
+          "type": "StructuredText"
+        },
+        "description": {
+          "config": {
+            "label": "Description",
+            "multi": "paragraph,strong,em,hyperlink"
+          },
+          "type": "StructuredText"
+        },
+        "items": {
+          "config": {
+            "fields": {
+              "image": {
+                "config": {
+                  "label": "Image"
+                },
+                "type": "Image"
+              },
+              "image_secondary": {
+                "config": {
+                  "label": "Secondary image"
+                },
+                "type": "Image"
+              },
+              "secondary_position": {
+                "config": {
+                  "default_value": "Bottom right",
+                  "label": "Secondary position",
+                  "options": [
+                    "Top left",
+                    "Top right",
+                    "Bottom left",
+                    "Bottom right"
+                  ]
+                },
+                "type": "Select"
+              },
+              "title": {
+                "config": {
+                  "label": "Item title"
+                },
+                "type": "Text"
+              },
+              "description": {
+                "config": {
+                  "label": "Item description",
+                  "multi": "paragraph,strong,em"
+                },
+                "type": "StructuredText"
+              }
+            },
+            "label": "Items"
+          },
+          "type": "Group"
+        }
+      },
+      "version": ""
+    }
+  ]
+}

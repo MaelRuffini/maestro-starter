@@ -1,0 +1,47 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "slice_type": "hero",
+    "variation": "default",
+    "version": "initial",
+    "id": "hero$mock-default",
+    "items": [],
+    "primary": {
+      "settings": [
+        {
+          "padding_top": "None",
+          "padding_bottom": "None",
+          "theme": "Dark",
+          "panel_animation": true
+        }
+      ],
+      "title": [
+        {
+          "type": "heading1",
+          "text": "La vie étudiante à l’EO Paris.",
+          "spans": []
+        }
+      ],
+      "description": [
+        {
+          "type": "paragraph",
+          "text": "Entre cours, projets et campus, la vie à l’École d’Ostéopathie de Paris se construit au quotidien. Une communauté d’étudiants, de praticiens et d’enseignants autour d’un même métier.",
+          "spans": []
+        }
+      ],
+      "video": {
+        "link_type": "Web",
+        "url": "https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4",
+        "key": "video"
+      },
+      "background_image": {
+        "url": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format&w=1920&h=1080&fit=crop",
+        "alt": "Étudiants autour d’une table de travail sur le campus",
+        "dimensions": { "width": 1920, "height": 1080 },
+        "copyright": null,
+        "id": "mock-background",
+        "edit": { "x": 0, "y": 0, "zoom": 1, "background": "transparent" }
+      }
+    }
+  }
+]

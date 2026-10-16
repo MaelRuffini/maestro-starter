@@ -1,0 +1,10 @@
+{
+  "type": "testimonial",
+  "label": "Testimonial",
+  "description": "Repeatable custom type with no page of its own: quote, author, role, photo. Listed by the Testimonials reference slice (examples/slices/Testimonials): all of them, or hand-picked through content relationships.",
+  "route": null,
+  "after": [
+    "Testimonials have no URL: they stay out of the sitemap and the route resolver by design",
+    "Create a few Testimonial documents, then add the Testimonials slice to a page"
+  ]
+}

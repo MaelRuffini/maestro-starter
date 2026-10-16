@@ -1,0 +1,10 @@
+// Shared by SliceTitle. Line spans keep Enter in the Page Builder from
+// opening a stack gap; size still comes from the type class on the heading.
+
+.slice-title {
+  white-space: pre-line;
+}
+
+.slice-title__line {
+  display: block;
+}

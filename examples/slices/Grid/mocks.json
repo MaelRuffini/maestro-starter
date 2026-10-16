@@ -1,0 +1,74 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "slice_type": "grid",
+    "variation": "default",
+    "version": "initial",
+    "id": "grid$mock-default",
+    "items": [],
+    "primary": {
+      "settings": [
+        {
+          "padding_top": "Small (64px)",
+          "padding_bottom": "Small (64px)",
+          "theme": "Inherit",
+          "panel_animation": false
+        }
+      ],
+      "title": [
+        {
+          "type": "heading2",
+          "text": "Ostéopathie du sport : marché, emploi, revenus",
+          "spans": []
+        }
+      ],
+      "columns": "4",
+      "cards": [
+        {
+          "theme": "Dark",
+          "stat": "80 %",
+          "description": [
+            {
+              "type": "paragraph",
+              "text": "de nos diplômés Master en poste dans le milieu sportif à 6 mois.",
+              "spans": []
+            }
+          ]
+        },
+        {
+          "theme": "Brand",
+          "stat": "+30 %",
+          "description": [
+            {
+              "type": "paragraph",
+              "text": "de revenu moyen par rapport à un ostéo généraliste en cabinet.",
+              "spans": []
+            }
+          ]
+        },
+        {
+          "theme": "Light",
+          "stat": "12",
+          "description": [
+            {
+              "type": "paragraph",
+              "text": "fédérations partenaires actifs qui accueillent nos étudiants en stage.",
+              "spans": []
+            }
+          ]
+        },
+        {
+          "theme": "Dark",
+          "stat": "150+",
+          "description": [
+            {
+              "type": "paragraph",
+              "text": "ostéos du sport formés à l'EO Paris et en exercice aujourd'hui.",
+              "spans": []
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

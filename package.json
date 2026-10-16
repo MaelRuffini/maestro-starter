@@ -1,0 +1,42 @@
+{
+  "name": "maestro-boilerplate",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint && npm run lint:css --silent && npm run slice:check --silent",
+    "lint:css": "stylelint \"src/**/*.scss\" \"examples/**/*.scss\"",
+    "slice:check": "node scripts/slice-check.mjs --examples",
+    "setup": "node scripts/init.mjs",
+    "slice:scaffold": "node scripts/slice-scaffold.mjs",
+    "slice:land": "node scripts/slice-land.mjs",
+    "type:install": "node scripts/type-install.mjs",
+    "prismic:connect": "node scripts/prismic-connect.mjs",
+    "prismic:fill": "node scripts/prismic-fill-slice.mjs",
+    "slack": "node scripts/slack-maestro.mjs"
+  },
+  "dependencies": {
+    "@prismicio/client": "^7.22.0",
+    "@prismicio/next": "^2.3.1",
+    "@prismicio/react": "^3.4.1",
+    "gsap": "^3.15.0",
+    "lenis": "^1.3.26",
+    "next": "16.3.4",
+    "plyr": "^3.8.4",
+    "react": "19.2.8",
+    "react-dom": "19.2.8"
+  },
+  "devDependencies": {
+    "@cursor/sdk": "^1.0.31",
+    "@slack/bolt": "^4.7.3",
+    "eslint": "^9",
+    "eslint-config-next": "16.3.4",
+    "prismic": "^1.17.0",
+    "sass": "^1.104.0",
+    "stylelint": "^17.16.0",
+    "stylelint-config-standard-scss": "^17.0.0",
+    "stylelint-declaration-strict-value": "^1.12.1"
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "format": "custom",
+  "id": "testimonial",
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
+      "quote": {
+        "config": {
+          "label": "Quote",
+          "single": "paragraph,strong,em"
+        },
+        "type": "StructuredText"
+      },
+      "author": {
+        "config": {
+          "label": "Author",
+          "placeholder": "Full name"
+        },
+        "type": "Text"
+      },
+      "role": {
+        "config": {
+          "label": "Role and company",
+          "placeholder": "Head of Marketing, Acme"
+        },
+        "type": "Text"
+      },
+      "photo": {
+        "config": {
+          "label": "Photo (square, at least 160×160 px)"
+        },
+        "type": "Image"
+      }
+    }
+  },
+  "label": "Testimonial",
+  "repeatable": true,
+  "status": true
+}

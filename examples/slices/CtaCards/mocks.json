@@ -1,0 +1,102 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "slice_type": "cta_cards",
+    "variation": "default",
+    "version": "initial",
+    "id": "cta-cards$mock-default",
+    "items": [],
+    "primary": {
+      "settings": [
+        {
+          "padding_top": "Small (64px)",
+          "padding_bottom": "Small (64px)",
+          "theme": "Inherit",
+          "panel_animation": false
+        }
+      ],
+      "left_card": [
+        {
+          "theme": "Brand",
+          "title": [
+            {
+              "type": "heading2",
+              "text": "Tu as envie de venir sur le campus ?",
+              "spans": []
+            }
+          ],
+          "description": [
+            {
+              "type": "paragraph",
+              "text": "La JPO est la meilleure opportunité pour nous rencontrer.",
+              "spans": []
+            }
+          ],
+          "points": [
+            {
+              "type": "list-item",
+              "text": "Découvrir l'école et la clinique",
+              "spans": []
+            },
+            {
+              "type": "list-item",
+              "text": "Echanger avec les étudiants et les enseignants",
+              "spans": []
+            }
+          ],
+          "image": {
+            "url": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format&w=800&h=1400&fit=crop",
+            "alt": "Étudiants discutant dans un escalier du campus",
+            "dimensions": { "width": 800, "height": 1400 },
+            "copyright": null,
+            "id": "mock-cta-cards-campus",
+            "edit": { "x": 0, "y": 0, "zoom": 1, "background": "transparent" }
+          },
+          "cta": {
+            "link_type": "Web",
+            "url": "https://example.com/jpo",
+            "text": "Je viens à la prochaine JPO",
+            "variant": "Primary"
+          }
+        }
+      ],
+      "right_card": [
+        {
+          "theme": "Dark",
+          "title": [
+            {
+              "type": "heading2",
+              "text": "Tu veux prendre le temps de lire la brochure ?",
+              "spans": []
+            }
+          ],
+          "description": [
+            {
+              "type": "paragraph",
+              "text": "La brochure est faite pour toi. Programme, tarifs, débouchés : tout dans un PDF que tu lis à ton rythme, quand tu veux.",
+              "spans": []
+            }
+          ],
+          "points": [
+            {
+              "type": "list-item",
+              "text": "PDF de 12 pages, prêt à lire",
+              "spans": []
+            },
+            {
+              "type": "list-item",
+              "text": "Dans ta boîte mail en 30 secondes",
+              "spans": []
+            }
+          ],
+          "cta": {
+            "link_type": "Web",
+            "url": "https://example.com/brochure",
+            "text": "Je reçois la brochure",
+            "variant": "Primary"
+          }
+        }
+      ]
+    }
+  }
+]

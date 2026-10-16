@@ -1,0 +1,24 @@
+// Dev-only chrome around each slice preview. Never shipped to production.
+
+.dev-slices__entry {
+  position: relative;
+  outline: 1px dashed var(--col-border);
+  outline-offset: -1px;
+}
+
+.dev-slices__meta {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: inline-block;
+  padding: var(--size-1) var(--size-2);
+  font-family: ui-monospace, monospace;
+  font-size: var(--font-size-text-small);
+  color: var(--col-white);
+  background-color: var(--col-black);
+}
+
+.dev-slices__empty {
+  padding: var(--size-6) var(--margin);
+  color: var(--col-text-muted);
+}

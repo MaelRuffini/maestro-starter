@@ -1,0 +1,77 @@
+{
+  "format": "page",
+  "id": "article",
+  "json": {
+    "Main": {
+      "uid": {
+        "config": {
+          "label": "UID"
+        },
+        "type": "UID"
+      },
+      "slices": {
+        "config": {
+          "choices": {}
+        },
+        "fieldset": "Slice Zone",
+        "type": "Slices"
+      },
+      "title": {
+        "config": {
+          "label": "Title",
+          "single": "heading1"
+        },
+        "type": "StructuredText"
+      },
+      "cover": {
+        "config": {
+          "label": "Cover (1600×900 px, JPG)"
+        },
+        "type": "Image"
+      },
+      "excerpt": {
+        "config": {
+          "label": "Excerpt (1–2 sentences, shown on listings)",
+          "single": "paragraph"
+        },
+        "type": "StructuredText"
+      },
+      "published_at": {
+        "config": {
+          "label": "Publication date"
+        },
+        "type": "Date"
+      }
+    },
+    "SEO & Metadata": {
+      "meta_title": {
+        "config": {
+          "label": "Meta Title (50–60 characters)",
+          "placeholder": "Shown in search results and social cards. Empty = site default"
+        },
+        "type": "Text"
+      },
+      "meta_description": {
+        "config": {
+          "label": "Meta Description (120–155 characters)",
+          "placeholder": "One or two sentences. Empty = site default"
+        },
+        "type": "Text"
+      },
+      "meta_image": {
+        "config": {
+          "constraint": {
+            "height": 630,
+            "width": 1200
+          },
+          "label": "Meta Image (1200×630 px, JPG or PNG, under 1 MB)",
+          "thumbnails": []
+        },
+        "type": "Image"
+      }
+    }
+  },
+  "label": "Article",
+  "repeatable": true,
+  "status": true
+}

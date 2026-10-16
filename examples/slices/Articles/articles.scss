@@ -1,0 +1,70 @@
+.articles__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-6);
+}
+
+.articles__list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  row-gap: var(--size-6);
+}
+
+.articles__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-3);
+  height: 100%;
+}
+
+.articles__cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: var(--radius-main);
+  transition: transform var(--transition-duration-fast) var(--transition-easing);
+
+  .articles__card:hover & {
+    transform: scale(1.02);
+  }
+}
+
+.articles__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-2);
+}
+
+.articles__heading {
+  margin: 0;
+}
+
+// The whole card is the hit area; the link stays the only focusable element.
+.articles__link {
+  color: inherit;
+  text-decoration: none;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: var(--radius-main);
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &:focus-visible::after {
+    outline: 2px solid var(--col-text);
+    outline-offset: var(--size-1);
+  }
+}
+
+.articles__excerpt {
+  margin: 0;
+  color: var(--col-text-muted);
+}

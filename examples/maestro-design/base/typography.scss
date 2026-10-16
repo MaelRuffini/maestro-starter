@@ -1,0 +1,93 @@
+// Type scale (size, not heading level). Names match Figma (Sizes / font-size).
+// Apply in JSX — including via Prose. Never redeclare font-size or line-height
+// in slice SCSS. An `<h3 className="h1">` is valid: the tag is the outline,
+// the class is the Figma style.
+// Line-height must work when a title wraps or has several CMS lines;
+// do not encode a one-line box as a tall strut.
+
+.display {
+  font-size: var(--font-size-display);
+  line-height: 1.1;
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  text-wrap: balance;
+}
+
+.h1 {
+  font-size: var(--font-size-h1);
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  text-wrap: balance;
+}
+
+.h2 {
+  font-size: var(--font-size-h2);
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  text-wrap: pretty;
+}
+
+.h3 {
+  font-size: var(--font-size-h3);
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.h4 {
+  font-size: var(--font-size-h4);
+  line-height: 1;
+  font-weight: 900;
+  text-wrap: balance;
+}
+
+.h5 {
+  font-size: var(--font-size-h5);
+  line-height: 1;
+  font-weight: 900;
+  text-wrap: balance;
+}
+
+.h6 {
+  font-size: var(--font-size-h6);
+  line-height: 1;
+  font-weight: 900;
+  text-wrap: balance;
+}
+
+.h7 {
+  font-size: var(--font-size-h7);
+  line-height: 1.1;
+  font-weight: 900;
+  text-wrap: pretty;
+}
+
+.text-large {
+  font-size: var(--font-size-text-large);
+  line-height: 1.5;
+}
+
+.text-main {
+  font-size: var(--font-size-text-main);
+  line-height: 1.3;
+}
+
+.text-small {
+  font-size: var(--font-size-text-small);
+  line-height: 1.3;
+}
+
+.label {
+  font-size: var(--font-size-text-small);
+  line-height: 1.1;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.text-muted {
+  color: var(--col-text-muted);
+}

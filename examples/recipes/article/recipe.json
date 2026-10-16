@@ -1,0 +1,11 @@
+{
+  "type": "article",
+  "label": "Article",
+  "description": "Blog post page type: title, cover, excerpt, publication date, slice zone, SEO tab. Route /blog/:uid rendered by src/app/blog/[uid]/page.js. Pair with the Articles reference slice (examples/slices/Articles).",
+  "route": "/blog/:uid",
+  "after": [
+    "Connect the slices an article may use: npx prismic slice connect <slice_id> --to article",
+    "A /blog listing page is a regular Page document (uid \"blog\") with the Articles slice (variation default)",
+    "The Articles slice, variation related, goes in the article's own slice zone for \"next 3 articles\""
+  ]
+}

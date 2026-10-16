@@ -1,0 +1,10 @@
+// Global stylesheet: base layer only.
+// Slice styles are colocated (src/slices/<Name>/<name>.scss) and imported by
+// each slice's index.jsx — never add slice styles here.
+
+@use '../styles/base/reset';
+@use '../styles/base/sizes';
+@use '../styles/base/grid';
+@use '../styles/base/base';
+@use '../styles/base/typography';
+@use '../styles/base/utilities';

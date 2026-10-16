@@ -1,0 +1,45 @@
+{
+  "format": "page",
+  "id": "homepage",
+  "json": {
+    "Main": {
+      "slices": {
+        "config": {
+          "choices": {}
+        },
+        "fieldset": "Slice Zone",
+        "type": "Slices"
+      }
+    },
+    "SEO & Metadata": {
+      "meta_title": {
+        "config": {
+          "label": "Meta Title (50–60 characters)",
+          "placeholder": "Shown in search results and social cards. Empty = site default"
+        },
+        "type": "Text"
+      },
+      "meta_description": {
+        "config": {
+          "label": "Meta Description (120–155 characters)",
+          "placeholder": "One or two sentences. Empty = site default"
+        },
+        "type": "Text"
+      },
+      "meta_image": {
+        "config": {
+          "constraint": {
+            "height": 630,
+            "width": 1200
+          },
+          "label": "Meta Image (1200×630 px, JPG or PNG, under 1 MB)",
+          "thumbnails": []
+        },
+        "type": "Image"
+      }
+    }
+  },
+  "label": "Homepage",
+  "repeatable": false,
+  "status": true
+}

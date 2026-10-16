@@ -1,0 +1,324 @@
+@use './breakpoints' as *;
+
+// ---------------------------------------------------------------------------
+// Design tokens — the ONLY place where raw colors, sizes and timings live.
+// Slices and components reference these custom properties, never raw values.
+// Names follow the Figma collections (Swatch, Theme, Sizes).
+// Values are Desktop; 1rem = 16px at 1440px and above (see sizes.scss), so
+// the px comments are exact at the 1440 design width and scale down below.
+// ---------------------------------------------------------------------------
+
+:root {
+  // Palette (Swatch). Opacity steps match Figma (Black 70%, White 20%, …).
+  --col-black: #190f35;
+  --col-black-70: color-mix(in srgb, var(--col-black) 70%, transparent);
+  --col-black-40: color-mix(in srgb, var(--col-black) 40%, transparent);
+  --col-black-20: color-mix(in srgb, var(--col-black) 20%, transparent);
+  --col-black-10: color-mix(in srgb, var(--col-black) 10%, transparent);
+  --col-white: #ffffff;
+  --col-white-70: color-mix(in srgb, var(--col-white) 70%, transparent);
+  --col-white-40: color-mix(in srgb, var(--col-white) 40%, transparent);
+  --col-white-20: color-mix(in srgb, var(--col-white) 20%, transparent);
+  --col-brand: #f446a0;
+  --col-grey: #f0f2f5;
+
+  // Layout (Sizes / site)
+  --margin: 3rem; // 48px — container side padding
+  --gutter: 1rem; // 16px — grid gutter
+  --gutter-mobile: var(--gutter);
+  --container-max: 1280px;
+  --measure: 65ch; // max line length for long-form text
+
+  // Spacing scale (Sizes / space). The number is the Figma step, not pixels:
+  // 0=0, 1=8, 2=12, 3=16, 4=24, 5=32, 6=40, 7=48, 8=64.
+  --size-0: 0;
+  --size-1: 0.5rem;
+  --size-2: 0.75rem;
+  --size-3: 1rem;
+  --size-4: 1.5rem;
+  --size-5: 2rem;
+  --size-6: 2.5rem;
+  --size-7: 3rem;
+  --size-8: 6rem;
+
+  --margin-large: var(--size-3); // 16px — .container--large side padding
+
+  // Section paddings (Sizes / section-space), driven by the `settings` group
+  // (see components/SliceSection.jsx and utilities.scss).
+  --section-space-none: 0;
+  --section-space-small: 4rem; // 64px
+  --section-space-main: 8rem; // 128px
+  --section-space-large: 10rem; // 160px
+  --section-space-page-top: 11.5rem; // 184px
+
+  // Sizes / section-height
+  --section-height-full: 56.25rem; // 900px
+
+  // Sizes / font-size — used by type classes in typography.scss
+  // Figma: Tag & CTA 14/110, Text Small 14/130, Text Main 16/130,
+  // H7 16/110, H6 20/100, H5 24/100, H4 32/100, H3 48/100, H2 64/100, H1 96/100.
+  --font-size-text-small: 0.875rem; // 14
+  --font-size-text-main: 1rem; // 16
+  --font-size-text-large: 1.25rem; // 20
+  --font-size-h7: 1rem; // 16
+  --font-size-h6: 1.25rem; // 20
+  --font-size-h5: 1.5rem; // 24
+  --font-size-h4: 2rem; // 32
+  --font-size-h3: 3rem; // 48
+  --font-size-h2: 4rem; // 64
+  --font-size-h1: 6rem; // 96
+  --font-size-display: 7rem; // 112
+
+  // Typography — one primary family; add --font-secondary later if needed.
+  --font-primary:
+    var(--font-google-sans-flex), ui-sans-serif, system-ui, sans-serif;
+
+  // Shape (Sizes / radius, border-width)
+  --radius-small: 0.5rem; // 8
+  --radius-main: 1rem; // 16
+  --radius-round: 99999px;
+  --border-width-main: 0.09375rem; // 1.5px
+
+  // Elevation
+  --shadow: 0 var(--size-4) 1.5625rem calc(var(--size-1) * -1)
+    color-mix(in srgb, var(--col-black) 20%, transparent);
+
+  // Motion
+  --transition-duration: 0.8s;
+  --transition-duration-fast: 0.25s;
+  --transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
+
+  // Semantic colors (Theme / Light — default). See .u-theme-*.
+  --col-background: var(--col-white);
+  --col-background-2: var(--col-grey);
+  --col-text: var(--col-black);
+  --col-text-muted: var(--col-black-70); // Figma text-2
+  --col-border: var(--col-black-10);
+  --col-focus: var(--col-brand);
+  --col-button-background: var(--col-brand);
+  --col-button-text: var(--col-white);
+
+  --col-selection-background: var(--col-black);
+  --col-selection-text: var(--col-white);
+
+  // Translucent panel over media. Not remapped by theme (always dark glass).
+  --col-overlay: var(--col-black-70);
+}
+
+.u-theme-light {
+  --col-background: var(--col-white);
+  --col-background-2: var(--col-grey);
+  --col-text: var(--col-black);
+  --col-text-muted: var(--col-black-70);
+  --col-border: var(--col-black-10);
+  --col-focus: var(--col-brand);
+  --col-button-background: var(--col-brand);
+  --col-button-text: var(--col-white);
+  color: var(--col-text);
+}
+
+.u-theme-dark {
+  --col-background: var(--col-black);
+  --col-background-2: var(--col-black);
+  --col-text: var(--col-white);
+  --col-text-muted: var(--col-white-70);
+  --col-border: var(--col-white-20);
+  --col-focus: var(--col-white);
+  --col-button-background: var(--col-brand);
+  --col-button-text: var(--col-white);
+  color: var(--col-text);
+}
+
+.u-theme-brand {
+  --col-background: var(--col-brand);
+  --col-background-2: var(--col-brand);
+  --col-text: var(--col-white);
+  --col-text-muted: var(--col-white);
+  --col-border: var(--col-white-20);
+  --col-focus: var(--col-white);
+  --col-button-background: var(--col-white);
+  --col-button-text: var(--col-black);
+  color: var(--col-text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition-duration: 0.01s;
+    --transition-duration-fast: 0.01s;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Base element styles
+// ---------------------------------------------------------------------------
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: auto;
+}
+
+::selection {
+  background: var(--col-selection-background);
+  color: var(--col-selection-text);
+  text-shadow: none;
+}
+
+body {
+  background-color: var(--col-background);
+  color: var(--col-text);
+  font-family: var(--font-primary);
+  font-size: var(--font-size-text-main);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+section {
+  position: relative;
+  z-index: 5;
+  background-color: var(--col-background);
+  color: var(--col-text);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+// Visible keyboard focus everywhere (RGAA 10.7). Never remove without a replacement.
+:focus-visible {
+  outline: 2px solid var(--col-focus);
+  outline-offset: 3px;
+}
+
+// ---------------------------------------------------------------------------
+// Skip link (layout.js) — RGAA 12.7
+// ---------------------------------------------------------------------------
+
+.skip-link {
+  position: absolute;
+  top: var(--size-1);
+  left: var(--size-1);
+  z-index: 100;
+  padding: var(--size-1) var(--size-3);
+  background-color: var(--col-black);
+  color: var(--col-white);
+  font-weight: 600;
+  transform: translateY(-200%);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+// ---------------------------------------------------------------------------
+// Link & button — shared interactive primitives (components/Button.jsx)
+// ---------------------------------------------------------------------------
+
+.link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--size-1);
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 400;
+  letter-spacing: 0;
+  font-size: var(--font-size-text-small);
+  line-height: 1;
+
+  &:link,
+  &:visited,
+  &:hover,
+  &:active {
+    text-decoration: none;
+  }
+}
+
+.link--secondary {
+  color: var(--col-text-muted);
+}
+
+.link--simple {
+  display: inline-block;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+    transform: scaleX(0);
+    transform-origin: left center;
+    pointer-events: none;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    &::after {
+      transition: transform var(--transition-duration) var(--transition-easing);
+    }
+
+    &:hover::after {
+      transform: scaleX(1);
+    }
+  }
+}
+
+.button {
+  position: relative;
+  padding: var(--size-1) var(--size-4);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--size-1);
+  background-color: var(--col-button-background);
+  color: var(--col-button-text);
+  text-decoration: none;
+  cursor: pointer;
+  font-weight: 400;
+  letter-spacing: 0;
+  -webkit-tap-highlight-color: transparent;
+  font-size: var(--font-size-text-small);
+  line-height: 1;
+  border-radius: var(--radius-round);
+  transition: opacity var(--transition-duration-fast) var(--transition-easing);
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      opacity: 0.85;
+    }
+  }
+
+  @media (hover: none) {
+    transition: transform 0.15s ease-out;
+
+    &:active {
+      transform: scale(0.96);
+    }
+  }
+}
+
+.button--secondary {
+  background-color: var(--col-border);
+  color: var(--col-text);
+}
+
+.button--outline {
+  background-color: transparent;
+  color: var(--col-text);
+  box-shadow: inset 0 0 0 var(--border-width-main) currentColor;
+}
+
+.box-shadow {
+  box-shadow: var(--shadow);
+}
+
+.overlay {
+  background-color: var(--col-overlay);
+}

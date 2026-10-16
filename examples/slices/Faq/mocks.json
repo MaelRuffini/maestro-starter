@@ -1,0 +1,182 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "slice_type": "faq",
+    "variation": "default",
+    "version": "initial",
+    "id": "faq$mock-default",
+    "items": [],
+    "primary": {
+      "settings": [
+        {
+          "padding_top": "Small (64px)",
+          "padding_bottom": "Main (128px)",
+          "theme": "Inherit",
+          "panel_animation": false
+        }
+      ],
+      "title": [
+        {
+          "type": "heading2",
+          "text": "Vos questions, nos réponses.",
+          "spans": []
+        }
+      ],
+      "description": [
+        {
+          "type": "paragraph",
+          "text": "Les questions les plus fréquemment posées sur la reconnaissance et la validité du Diplôme d'Ostéopathie.",
+          "spans": []
+        }
+      ],
+      "cta": {
+        "link_type": "Web",
+        "url": "https://example.com/rendez-vous",
+        "text": "Prendre RDV avec l'école",
+        "variant": "Primary"
+      },
+      "questions": [
+        {
+          "question": "Le Diplôme d'Ostéopathie est-il reconnu par l'État français ?",
+          "answer": [
+            {
+              "type": "paragraph",
+              "text": "Oui. Le DO est reconnu par le Ministère de la Santé depuis la loi du 4 mars 2002 (dite « loi Kouchner »). Il est inscrit au Répertoire National des Certifications Professionnelles au niveau 7, équivalent Bac+5. Seules les écoles disposant de l'agrément ministériel peuvent le délivrer.",
+              "spans": []
+            }
+          ]
+        },
+        {
+          "question": "Le DO est-il équivalent à un Master universitaire ?",
+          "answer": [
+            {
+              "type": "paragraph",
+              "text": "Le DO est enregistré au niveau 7 du RNCP, soit le même niveau de qualification qu'un Master. Ce n'est pas un diplôme universitaire pour autant : il ne donne pas automatiquement accès au doctorat, et une passerelle reste nécessaire pour poursuivre en recherche.",
+              "spans": []
+            }
+          ]
+        },
+        {
+          "question": "Peut-on exercer l'ostéopathie à l'étranger avec un DO français ?",
+          "answer": [
+            {
+              "type": "paragraph",
+              "text": "Cela dépend du pays. En Belgique, en Suisse et au Royaume-Uni, le DO français est largement reconnu, parfois après inscription auprès de l'ordre local. Hors d'Europe, une équivalence ou un complément de formation est le plus souvent demandé : nous accompagnons nos diplômés dans ces démarches.",
+              "spans": []
+            }
+          ]
+        },
+        {
+          "question": "Que se passe-t-il si l'école perd son agrément ?",
+          "answer": [
+            {
+              "type": "paragraph",
+              "text": "Les étudiants déjà inscrits terminent leur cursus et obtiennent leur diplôme : le Ministère de la Santé organise la continuité pédagogique. Notre agrément a été renouvelé pour cinq ans, et nos résultats aux évaluations nationales sont publics.",
+              "spans": []
+            }
+          ]
+        },
+        {
+          "question": "Puis-je exercer immédiatement après l'obtention du DO ?",
+          "answer": [
+            {
+              "type": "paragraph",
+              "text": "Oui. Une fois le diplôme obtenu, il suffit d'enregistrer votre titre auprès de l'Agence Régionale de Santé et de souscrire une assurance responsabilité civile professionnelle pour ouvrir votre cabinet ou rejoindre une structure existante.",
+              "spans": []
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "__TYPE__": "SharedSliceContent",
+    "slice_type": "faq",
+    "variation": "listLeft",
+    "version": "initial",
+    "id": "faq$mock-list-left",
+    "items": [],
+    "primary": {
+      "settings": [
+        {
+          "padding_top": "Small (64px)",
+          "padding_bottom": "Main (128px)",
+          "theme": "Inherit",
+          "panel_animation": false
+        }
+      ],
+      "title": [
+        {
+          "type": "heading2",
+          "text": "Admission, rythme, financement.",
+          "spans": []
+        }
+      ],
+      "description": [
+        {
+          "type": "paragraph",
+          "text": "Tout ce qu'il faut savoir avant de candidater en première année à l'EO Paris.",
+          "spans": []
+        }
+      ],
+      "cta": {
+        "link_type": "Web",
+        "url": "https://example.com/admissions",
+        "text": "Déposer ma candidature",
+        "variant": "Primary"
+      },
+      "questions": [
+        {
+          "question": "Quel bac faut-il pour entrer en première année ?",
+          "answer": [
+            {
+              "type": "paragraph",
+              "text": "Tous les bacs généraux sont acceptés. Les spécialités scientifiques facilitent la première année, mais nous recrutons aussi des profils STMS et des étudiants en reconversion sur dossier et entretien.",
+              "spans": []
+            }
+          ]
+        },
+        {
+          "question": "La formation est-elle compatible avec un emploi ?",
+          "answer": [
+            {
+              "type": "paragraph",
+              "text": "Le cursus est à temps plein, avec environ 30 heures de cours et de clinique par semaine. Un emploi à temps partiel le week-end reste possible, mais nous déconseillons toute activité en semaine.",
+              "spans": []
+            }
+          ]
+        },
+        {
+          "question": "Combien d'heures de pratique clinique sont prévues ?",
+          "answer": [
+            {
+              "type": "paragraph",
+              "text": "Plus de 1 500 heures sur l'ensemble du cursus, dont 150 consultations supervisées en clinique interne à partir de la quatrième année, complétées par des stages en structure sportive ou hospitalière.",
+              "spans": []
+            }
+          ]
+        },
+        {
+          "question": "Quelles aides au financement existe-t-il ?",
+          "answer": [
+            {
+              "type": "paragraph",
+              "text": "Prêt étudiant garanti par l'État, paiement mensualisé sans frais, bourses internes sur critères sociaux et financement CPF pour les reconversions. Notre service admissions construit le plan avec vous.",
+              "spans": []
+            }
+          ]
+        },
+        {
+          "question": "Peut-on intégrer le cursus en cours de route ?",
+          "answer": [
+            {
+              "type": "paragraph",
+              "text": "Oui, en admission parallèle. Les étudiants venant de PASS, de STAPS ou d'une autre école d'ostéopathie peuvent entrer en deuxième ou troisième année après étude du dossier et validation des acquis.",
+              "spans": []
+            }
+          ]
+        }
+      ]
+    }
+  }
+]

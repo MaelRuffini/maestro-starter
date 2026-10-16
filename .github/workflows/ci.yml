@@ -1,0 +1,43 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: Lint & build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Generated Prismic files are up to date
+        run: |
+          npx --yes prismic gen slice-index
+          npx --yes prismic gen types
+          git diff --exit-code -- src/slices/index.js prismicio-types.d.ts
+
+      - name: Build
+        run: npm run build
+        env:
+          # The build only needs the public repository name (read from
+          # prismic.config.json). Add PRISMIC_ACCESS_TOKEN as a repo secret
+          # if the Prismic repository is private.
+          PRISMIC_ACCESS_TOKEN: ${{ secrets.PRISMIC_ACCESS_TOKEN }}

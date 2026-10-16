@@ -1,0 +1,110 @@
+{
+  "format": "custom",
+  "id": "settings",
+  "json": {
+    "Main": {
+      "meta_title": {
+        "config": {
+          "label": "Meta title (50–60 characters)",
+          "placeholder": "Default title for search results and social cards; also the suffix of every page title"
+        },
+        "type": "Text"
+      },
+      "meta_description": {
+        "config": {
+          "label": "Meta description (120–155 characters)",
+          "placeholder": "Default summary shown under the title in search results"
+        },
+        "type": "Text"
+      },
+      "og_image": {
+        "config": {
+          "constraint": {
+            "height": 630,
+            "width": 1200
+          },
+          "label": "OG image (1200×630 px, JPG or PNG, under 1 MB)",
+          "thumbnails": []
+        },
+        "type": "Image"
+      }
+    },
+    "Icons": {
+      "favicon": {
+        "config": {
+          "label": "Favicon (SVG preferred, or square PNG 512×512 px)",
+          "placeholder": "Shown in browser tabs and bookmarks"
+        },
+        "type": "Image"
+      },
+      "apple_touch_icon": {
+        "config": {
+          "label": "Apple touch icon (PNG 180×180 px, opaque background, square corners)",
+          "placeholder": "iOS home screen icon; iOS rounds the corners itself"
+        },
+        "type": "Image"
+      },
+      "theme_color": {
+        "config": {
+          "label": "Theme color (hex, usually the site background)",
+          "placeholder": "Tints the browser UI on mobile"
+        },
+        "type": "Color"
+      }
+    },
+    "Custom code": {
+      "head_code": {
+        "config": {
+          "label": "Head code (meta, link and script tags, pasted as-is)",
+          "placeholder": "<!-- Tag Manager, Search Console verification, font preconnect… -->",
+          "single": "preformatted"
+        },
+        "type": "StructuredText"
+      },
+      "body_end_code": {
+        "config": {
+          "label": "Body end code (scripts, noscript and widgets, pasted as-is)",
+          "placeholder": "<!-- Tag Manager noscript, chat widget… -->",
+          "single": "preformatted"
+        },
+        "type": "StructuredText"
+      }
+    },
+    "Redirects": {
+      "redirects": {
+        "config": {
+          "fields": {
+            "from": {
+              "config": {
+                "label": "From (path starting with /, no domain)",
+                "placeholder": "/old-page"
+              },
+              "type": "Text"
+            },
+            "to": {
+              "config": {
+                "label": "To (path or full URL)",
+                "placeholder": "/new-page  or  https://example.com/page"
+              },
+              "type": "Text"
+            },
+            "permanent": {
+              "config": {
+                "default_value": true,
+                "label": "Permanent (301 = moved for good, 302 = temporary)",
+                "placeholder_false": "302 (temporary)",
+                "placeholder_true": "301 (permanent)"
+              },
+              "type": "Boolean"
+            }
+          },
+          "label": "Redirects"
+        },
+        "type": "Group"
+      }
+    }
+  },
+  "label": "Settings",
+  "repeatable": false,
+  "status": true
+}

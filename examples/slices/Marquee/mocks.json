@@ -1,0 +1,148 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "slice_type": "marquee",
+    "variation": "default",
+    "version": "initial",
+    "id": "marquee$mock-default",
+    "items": [],
+    "primary": {
+      "settings": [
+        {
+          "padding_top": "Main (128px)",
+          "padding_bottom": "Main (128px)",
+          "theme": "Inherit",
+          "panel_animation": false
+        }
+      ],
+      "title": [
+        {
+          "type": "heading2",
+          "text": "5 000 m² au cœur de Paris.\nUn vrai chez-toi pour 5 ans.",
+          "spans": []
+        }
+      ],
+      "description": [
+        {
+          "type": "paragraph",
+          "text": "Amphis modernes, salles de TP dédiées à l'anatomie, clinique pédagogique intégrée, bibliothèque, salles de sport, foyer étudiant, espaces extérieurs. Tout est là. Voici les lieux qui vont rythmer ton quotidien pendant tes 5 ans à EO Paris.",
+          "spans": []
+        }
+      ],
+      "images_top": [
+        {
+          "image": {
+            "url": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format&w=800&h=450&fit=crop",
+            "alt": "Salle de TP avec étudiants autour de tables bleues",
+            "dimensions": { "width": 800, "height": 450 },
+            "copyright": null,
+            "id": "mock-marquee-top-1",
+            "edit": { "x": 0, "y": 0, "zoom": 1, "background": "transparent" }
+          }
+        },
+        {
+          "image": {
+            "url": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format&w=800&h=450&fit=crop&sat=-20",
+            "alt": "Open space pédagogique avec étudiants et enseignant",
+            "dimensions": { "width": 800, "height": 450 },
+            "copyright": null,
+            "id": "mock-marquee-top-2",
+            "edit": { "x": 0, "y": 0, "zoom": 1, "background": "transparent" }
+          }
+        },
+        {
+          "image": {
+            "url": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format&w=800&h=450&fit=crop&rect=0,0,800,450",
+            "alt": "Hall d'entrée du campus avec motos et vélos",
+            "dimensions": { "width": 800, "height": 450 },
+            "copyright": null,
+            "id": "mock-marquee-top-3",
+            "edit": { "x": 0, "y": 0, "zoom": 1, "background": "transparent" }
+          }
+        },
+        {
+          "image": {
+            "url": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format&w=800&h=450&fit=crop&sat=30",
+            "alt": "Salle de sport sur le campus",
+            "dimensions": { "width": 800, "height": 450 },
+            "copyright": null,
+            "id": "mock-marquee-top-4",
+            "edit": { "x": 0, "y": 0, "zoom": 1, "background": "transparent" }
+          }
+        },
+        {
+          "image": {
+            "url": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format&w=800&h=450&fit=crop&sharp=10",
+            "alt": "Amphithéâtre avec skyline parisienne en fond",
+            "dimensions": { "width": 800, "height": 450 },
+            "copyright": null,
+            "id": "mock-marquee-top-5",
+            "edit": { "x": 0, "y": 0, "zoom": 1, "background": "transparent" }
+          }
+        }
+      ],
+      "images_bottom": [
+        {
+          "image": {
+            "url": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format&w=800&h=450&fit=crop&rect=0,0,800,450",
+            "alt": "Hall d'entrée du campus avec motos et vélos",
+            "dimensions": { "width": 800, "height": 450 },
+            "copyright": null,
+            "id": "mock-marquee-bottom-1",
+            "edit": { "x": 0, "y": 0, "zoom": 1, "background": "transparent" }
+          }
+        },
+        {
+          "image": {
+            "url": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format&w=800&h=450&fit=crop&sat=30",
+            "alt": "Salle de sport sur le campus",
+            "dimensions": { "width": 800, "height": 450 },
+            "copyright": null,
+            "id": "mock-marquee-bottom-2",
+            "edit": { "x": 0, "y": 0, "zoom": 1, "background": "transparent" }
+          }
+        },
+        {
+          "image": {
+            "url": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format&w=800&h=450&fit=crop&sat=-40",
+            "alt": "Salle de cours avec tables bleues et laptops",
+            "dimensions": { "width": 800, "height": 450 },
+            "copyright": null,
+            "id": "mock-marquee-bottom-3",
+            "edit": { "x": 0, "y": 0, "zoom": 1, "background": "transparent" }
+          }
+        },
+        {
+          "image": {
+            "url": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format&w=800&h=450&fit=crop",
+            "alt": "Salle de TP avec étudiants autour de tables bleues",
+            "dimensions": { "width": 800, "height": 450 },
+            "copyright": null,
+            "id": "mock-marquee-bottom-4",
+            "edit": { "x": 0, "y": 0, "zoom": 1, "background": "transparent" }
+          }
+        },
+        {
+          "image": {
+            "url": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format&w=800&h=450&fit=crop&sat=-20",
+            "alt": "Open space pédagogique avec étudiants et enseignant",
+            "dimensions": { "width": 800, "height": 450 },
+            "copyright": null,
+            "id": "mock-marquee-bottom-5",
+            "edit": { "x": 0, "y": 0, "zoom": 1, "background": "transparent" }
+          }
+        },
+        {
+          "image": {
+            "url": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format&w=800&h=450&fit=crop&sharp=10",
+            "alt": "Amphithéâtre avec skyline parisienne en fond",
+            "dimensions": { "width": 800, "height": 450 },
+            "copyright": null,
+            "id": "mock-marquee-bottom-6",
+            "edit": { "x": 0, "y": 0, "zoom": 1, "background": "transparent" }
+          }
+        }
+      ]
+    }
+  }
+]

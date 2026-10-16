@@ -1,0 +1,143 @@
+@use 'base/breakpoints' as *;
+
+// Two fixed cards. Figma: 734 + 16 + 498 on a 1248 row → the card holding
+// the photo takes the wider share; two text-only cards split evenly.
+.cta-cards__grid {
+  display: flex;
+  align-items: stretch;
+  gap: var(--size-3);
+}
+
+.cta-cards__card {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 30rem;
+  padding: var(--size-7) var(--size-6);
+  border-radius: var(--size-7);
+  background-color: var(--col-background);
+  color: var(--col-text);
+}
+
+.cta-cards__card--has-image {
+  display: grid;
+  flex-grow: 1.47;
+  grid-template-columns: minmax(0, 434fr) minmax(0, 252fr);
+  align-items: stretch;
+  padding: var(--size-4);
+}
+
+.cta-cards__copy {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: var(--size-4);
+  min-width: 0;
+}
+
+.cta-cards__card:not(.cta-cards__card--has-image) {
+  justify-content: space-between;
+}
+
+.cta-cards__card--has-image .cta-cards__copy {
+  padding-block-start: var(--size-4);
+  padding-inline-start: var(--size-3);
+  padding-inline-end: var(--size-7);
+}
+
+.cta-cards__title {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.cta-cards__points {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-4);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cta-cards__point {
+  display: flex;
+  align-items: center;
+  gap: var(--size-1);
+}
+
+.cta-cards__check {
+  flex-shrink: 0;
+  display: block;
+  width: 1.125rem;
+  height: 1.125rem;
+}
+
+.cta-cards__check-mark {
+  fill: var(--col-background);
+}
+
+// Image card: the copy column's `gap` already gives the Figma 24px above the CTA.
+.cta-cards__cta {
+  align-self: flex-start;
+}
+
+// Bottom-pinned CTA: `auto` pushes it down on tall cards; the padding keeps
+// the Figma 64px air when the card is only as tall as its content.
+.cta-cards__card:not(.cta-cards__card--has-image) .cta-cards__cta {
+  margin-block-start: auto;
+  padding-block-start: calc(var(--size-5) * 2);
+}
+
+.cta-cards__media {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: var(--size-4);
+}
+
+.cta-cards__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (max-width: $bp-tablet-max) {
+  .cta-cards__grid {
+    flex-direction: column;
+  }
+
+  .cta-cards__card {
+    flex: 0 0 auto;
+    min-height: 0;
+  }
+
+  .cta-cards__card--has-image {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: var(--size-4);
+  }
+
+  .cta-cards__card--has-image .cta-cards__copy {
+    padding-inline-end: var(--size-3);
+  }
+
+  .cta-cards__media {
+    min-height: 20rem;
+  }
+}
+
+@media (max-width: $bp-mobile) {
+  .cta-cards__card {
+    padding: var(--size-5) var(--size-4);
+    border-radius: var(--radius-main);
+  }
+
+  .cta-cards__card--has-image {
+    padding: var(--size-3);
+  }
+}

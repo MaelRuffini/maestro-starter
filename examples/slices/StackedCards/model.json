@@ -1,0 +1,135 @@
+{
+  "id": "stacked_cards",
+  "name": "StackedCards",
+  "type": "SharedSlice",
+  "variations": [
+    {
+      "description": "Default",
+      "docURL": "",
+      "id": "default",
+      "imageUrl": "",
+      "name": "Default",
+      "primary": {
+        "settings": {
+          "config": {
+            "fields": {
+              "padding_top": {
+                "config": {
+                  "default_value": "Main (128px)",
+                  "label": "Padding top",
+                  "options": [
+                    "None",
+                    "Small (64px)",
+                    "Main (128px)",
+                    "Large (160px)",
+                    "Page top (184px)"
+                  ]
+                },
+                "type": "Select"
+              },
+              "padding_bottom": {
+                "config": {
+                  "default_value": "Main (128px)",
+                  "label": "Padding bottom",
+                  "options": [
+                    "None",
+                    "Small (64px)",
+                    "Main (128px)",
+                    "Large (160px)",
+                    "Page top (184px)"
+                  ]
+                },
+                "type": "Select"
+              },
+              "theme": {
+                "config": {
+                  "default_value": "Inherit",
+                  "label": "Theme",
+                  "options": [
+                    "Inherit",
+                    "Light",
+                    "Dark",
+                    "Brand"
+                  ]
+                },
+                "type": "Select"
+              },
+              "panel_animation": {
+                "config": {
+                  "label": "Panel animation",
+                  "placeholder_false": "Off",
+                  "placeholder_true": "On"
+                },
+                "type": "Boolean"
+              }
+            },
+            "label": "Settings",
+            "repeat": false
+          },
+          "type": "Group"
+        },
+        "title": {
+          "config": {
+            "label": "Title",
+            "single": "heading1,heading2,heading3,heading4,heading5,heading6"
+          },
+          "type": "StructuredText"
+        },
+        "description": {
+          "config": {
+            "label": "Description",
+            "multi": "paragraph,strong,em,hyperlink"
+          },
+          "type": "StructuredText"
+        },
+        "cards": {
+          "config": {
+            "fields": {
+              "image": {
+                "config": {
+                  "label": "Image"
+                },
+                "type": "Image"
+              },
+              "eyebrow": {
+                "config": {
+                  "label": "Eyebrow",
+                  "placeholder": "8h00"
+                },
+                "type": "Text"
+              },
+              "title": {
+                "config": {
+                  "label": "Card title"
+                },
+                "type": "Text"
+              },
+              "description": {
+                "config": {
+                  "label": "Card description",
+                  "multi": "paragraph,strong,em"
+                },
+                "type": "StructuredText"
+              }
+            },
+            "label": "Cards"
+          },
+          "type": "Group"
+        },
+        "cta": {
+          "config": {
+            "allowText": true,
+            "label": "Button",
+            "variants": [
+              "Primary",
+              "Secondary",
+              "Outline"
+            ]
+          },
+          "type": "Link"
+        }
+      },
+      "version": ""
+    }
+  ]
+}

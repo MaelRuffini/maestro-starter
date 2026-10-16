@@ -1,0 +1,264 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "slice_type": "testimonials",
+    "variation": "default",
+    "version": "initial",
+    "id": "mock-testimonials-default",
+    "items": [],
+    "primary": {
+      "settings": [
+        {
+          "padding_top": "Main (128px)",
+          "padding_bottom": "Main (128px)",
+          "theme": "Inherit",
+          "panel_animation": false
+        }
+      ],
+      "title": [
+        {
+          "type": "heading2",
+          "text": "Ils nous font confiance",
+          "spans": []
+        }
+      ],
+      "limit": null
+    },
+    "fixtures": {
+      "testimonial": [
+        {
+          "id": "mock-testimonial-1",
+          "uid": "temoignage-1",
+          "type": "testimonial",
+          "href": "",
+          "tags": [],
+          "first_publication_date": "2026-01-10T09:00:00+0000",
+          "last_publication_date": "2026-01-10T09:00:00+0000",
+          "slugs": [
+            "temoignage-1"
+          ],
+          "linked_documents": [],
+          "lang": "fr-fr",
+          "alternate_languages": [],
+          "url": null,
+          "data": {
+            "quote": [
+              {
+                "type": "paragraph",
+                "text": "« L’équipe a livré un site que nos éditeurs ont pris en main en une après-midi. Aucun ticket depuis. »",
+                "spans": []
+              }
+            ],
+            "author": "Claire Moreau",
+            "role": "Directrice communication, Hélios",
+            "photo": {
+              "url": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&h=400",
+              "alt": "Portrait de Claire Moreau",
+              "dimensions": {
+                "width": 400,
+                "height": 400
+              },
+              "copyright": null,
+              "id": "mock-testimonial-1-photo",
+              "edit": {
+                "x": 0,
+                "y": 0,
+                "zoom": 1,
+                "background": "transparent"
+              }
+            }
+          }
+        },
+        {
+          "id": "mock-testimonial-2",
+          "uid": "temoignage-2",
+          "type": "testimonial",
+          "href": "",
+          "tags": [],
+          "first_publication_date": "2026-01-10T09:00:00+0000",
+          "last_publication_date": "2026-01-10T09:00:00+0000",
+          "slugs": [
+            "temoignage-2"
+          ],
+          "linked_documents": [],
+          "lang": "fr-fr",
+          "alternate_languages": [],
+          "url": null,
+          "data": {
+            "quote": [
+              {
+                "type": "paragraph",
+                "text": "« Enfin un prestataire qui parle accessibilité avant qu’on le demande. »",
+                "spans": []
+              }
+            ],
+            "author": "Yacine Benali",
+            "role": "Responsable digital, Fondation Arc",
+            "photo": {
+              "url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&h=400",
+              "alt": "Portrait de Yacine Benali",
+              "dimensions": {
+                "width": 400,
+                "height": 400
+              },
+              "copyright": null,
+              "id": "mock-testimonial-2-photo",
+              "edit": {
+                "x": 0,
+                "y": 0,
+                "zoom": 1,
+                "background": "transparent"
+              }
+            }
+          }
+        },
+        {
+          "id": "mock-testimonial-3",
+          "uid": "temoignage-3",
+          "type": "testimonial",
+          "href": "",
+          "tags": [],
+          "first_publication_date": "2026-01-10T09:00:00+0000",
+          "last_publication_date": "2026-01-10T09:00:00+0000",
+          "slugs": [
+            "temoignage-3"
+          ],
+          "linked_documents": [],
+          "lang": "fr-fr",
+          "alternate_languages": [],
+          "url": null,
+          "data": {
+            "quote": [
+              {
+                "type": "paragraph",
+                "text": "« Le passage à Prismic nous a fait gagner trois jours par mois sur la mise à jour du site. »",
+                "spans": []
+              }
+            ],
+            "author": "Sophie Lemaire",
+            "role": "Cheffe de projet, Ville de Nantes",
+            "photo": {
+              "url": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=400&h=400",
+              "alt": "Portrait de Sophie Lemaire",
+              "dimensions": {
+                "width": 400,
+                "height": 400
+              },
+              "copyright": null,
+              "id": "mock-testimonial-3-photo",
+              "edit": {
+                "x": 0,
+                "y": 0,
+                "zoom": 1,
+                "background": "transparent"
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
+  {
+    "__TYPE__": "SharedSliceContent",
+    "slice_type": "testimonials",
+    "variation": "curated",
+    "version": "initial",
+    "id": "mock-testimonials-curated",
+    "items": [],
+    "primary": {
+      "settings": [
+        {
+          "padding_top": "Main (128px)",
+          "padding_bottom": "Main (128px)",
+          "theme": "Inherit",
+          "panel_animation": false
+        }
+      ],
+      "title": [
+        {
+          "type": "heading2",
+          "text": "Ce qu’en disent nos clients",
+          "spans": []
+        }
+      ],
+      "items": [
+        {
+          "testimonial": {
+            "link_type": "Document",
+            "id": "mock-testimonial-3",
+            "uid": "temoignage-3",
+            "type": "testimonial",
+            "tags": [],
+            "lang": "fr-fr",
+            "isBroken": false,
+            "data": {
+              "quote": [
+                {
+                  "type": "paragraph",
+                  "text": "« Le passage à Prismic nous a fait gagner trois jours par mois sur la mise à jour du site. »",
+                  "spans": []
+                }
+              ],
+              "author": "Sophie Lemaire",
+              "role": "Cheffe de projet, Ville de Nantes",
+              "photo": {
+                "url": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=400&h=400",
+                "alt": "Portrait de Sophie Lemaire",
+                "dimensions": {
+                  "width": 400,
+                  "height": 400
+                },
+                "copyright": null,
+                "id": "mock-testimonial-3-photo",
+                "edit": {
+                  "x": 0,
+                  "y": 0,
+                  "zoom": 1,
+                  "background": "transparent"
+                }
+              }
+            }
+          }
+        },
+        {
+          "testimonial": {
+            "link_type": "Document",
+            "id": "mock-testimonial-1",
+            "uid": "temoignage-1",
+            "type": "testimonial",
+            "tags": [],
+            "lang": "fr-fr",
+            "isBroken": false,
+            "data": {
+              "quote": [
+                {
+                  "type": "paragraph",
+                  "text": "« L’équipe a livré un site que nos éditeurs ont pris en main en une après-midi. Aucun ticket depuis. »",
+                  "spans": []
+                }
+              ],
+              "author": "Claire Moreau",
+              "role": "Directrice communication, Hélios",
+              "photo": {
+                "url": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&h=400",
+                "alt": "Portrait de Claire Moreau",
+                "dimensions": {
+                  "width": 400,
+                  "height": 400
+                },
+                "copyright": null,
+                "id": "mock-testimonial-1-photo",
+                "edit": {
+                  "x": 0,
+                  "y": 0,
+                  "zoom": 1,
+                  "background": "transparent"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+]
