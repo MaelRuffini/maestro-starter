@@ -2,6 +2,7 @@ import { createElement } from "react";
 import { isFilled } from "@prismicio/client";
 import { PrismicRichText } from "@prismicio/react";
 
+import { animate } from "@/lib/animate";
 import { joinClasses } from "./SliceSection";
 import "@/styles/components/slice-title.scss";
 
@@ -39,14 +40,27 @@ function headingTagFromField(field, fallback) {
  *   field: import("@prismicio/client").RichTextField,
  *   className?: string,
  *   fallbackTag?: "h1"|"h2"|"h3"|"h4"|"h5"|"h6",
+ *   animation?: string | false,
  * }} props
+ *
+ * Animation: follows the `title` role of `src/animations.config.js`. Pass a
+ * name to force one on this title, or `false` to opt out. Stays a server
+ * component: the motion runs from `components/Animations.jsx`.
  */
-export default function SliceTitle({ field, className, fallbackTag = "h2" }) {
+export default function SliceTitle({
+  field,
+  className,
+  fallbackTag = "h2",
+  animation,
+}) {
   if (!isFilled.richText(field)) return null;
 
   return createElement(
     headingTagFromField(field, fallbackTag),
-    { className: joinClasses("slice-title", className) },
+    {
+      className: joinClasses("slice-title", className),
+      ...animate("title", animation),
+    },
     <PrismicRichText
       field={field}
       components={{

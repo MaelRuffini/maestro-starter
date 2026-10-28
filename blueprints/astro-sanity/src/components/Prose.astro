@@ -1,0 +1,14 @@
+---
+/**
+ * Editorial Portable Text body. Heading style → default type class
+ * (h1 → .h1 … h6 → .h6) because the editor is ranking subsections.
+ * BUILD.md phase 3: render with @portabletext/astro and the same
+ * component map as Maestro src/components/Prose.jsx.
+ */
+import { isFilled } from "@/lib/filled.js";
+import "@/styles/components/prose.scss";
+
+const { field, class: className } = Astro.props;
+---
+
+{isFilled.portable(field) && <div class:list={["prose", className]}>{/* PortableText field={field} */}</div>}

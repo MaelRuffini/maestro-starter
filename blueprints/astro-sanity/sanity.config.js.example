@@ -1,0 +1,50 @@
+import { defineConfig } from "sanity";
+import { structureTool } from "sanity/structure";
+import { presentationTool } from "sanity/presentation";
+import { schemaTypes } from "./schema/index.js";
+import { resolveHref } from "./src/lib/links.js";
+
+const projectId = import.meta.env.SANITY_STUDIO_PROJECT_ID || process.env.PUBLIC_SANITY_PROJECT_ID;
+const dataset = import.meta.env.SANITY_STUDIO_DATASET || process.env.PUBLIC_SANITY_DATASET || "production";
+
+export default defineConfig({
+  name: "maestro-astro",
+  title: "Maestro Astro",
+  projectId,
+  dataset,
+  plugins: [
+    structureTool({
+      structure: (S) =>
+        S.list()
+          .title("Content")
+          .items([
+            S.listItem()
+              .title("Homepage")
+              .id("homepage")
+              .child(S.document().schemaType("homepage").documentId("homepage")),
+            S.listItem()
+              .title("Settings")
+              .id("settings")
+              .child(S.document().schemaType("settings").documentId("settings")),
+            S.divider(),
+            S.documentTypeListItem("page").title("Pages"),
+          ]),
+    }),
+    presentationTool({
+      resolve: {
+        locations: {
+          homepage: { select: {}, resolve: () => ({ href: "/" }) },
+          page: {
+            select: { slug: "slug.current" },
+            resolve: (doc) => ({ href: resolveHref({ _type: "page", slug: doc?.slug }) }),
+          },
+        },
+      },
+      previewUrl: {
+        initial: process.env.SANITY_STUDIO_PREVIEW_URL || "http://localhost:4321",
+        previewMode: { enable: "/api/draft-mode/enable" },
+      },
+    }),
+  ],
+  schema: { types: schemaTypes },
+});

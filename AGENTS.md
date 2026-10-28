@@ -31,6 +31,11 @@ accessibility and the bootstrap checklist. It is also exposed as a skill at
   (`SKILL.md` §2.10, §4.4). A live URL or a prototype's code is a source too:
   measured, then translated by role into our tokens — never ported
   (`SKILL.md` §2.11, §8.1).
+- Animations are **off until a project picks** (`SKILL.md` §3.8): roles are set
+  in `src/animations.config.js`, implementations live in
+  `src/lib/animations/`, one client controller (`Animations`) runs them from
+  `data-animate`. Never animate from a slice, never add `"use client"` to
+  `SliceTitle` / `SliceSection`. Ask the user which motion at project start.
 - Site-wide settings (SEO defaults, favicons, Webflow-style head/body custom code,
   redirects) live in the `settings` singleton (`SKILL.md` §5). Never add analytics
   or tag-manager snippets in code.

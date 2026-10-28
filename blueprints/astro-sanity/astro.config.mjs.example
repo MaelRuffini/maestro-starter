@@ -1,0 +1,42 @@
+import { defineConfig } from "astro/config";
+import vercel from "@astrojs/vercel";
+import react from "@astrojs/react";
+import sanity from "@sanity/astro";
+import { loadEnv } from "vite";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const root = path.dirname(fileURLToPath(import.meta.url));
+const { PUBLIC_SANITY_PROJECT_ID, PUBLIC_SANITY_DATASET } = loadEnv(
+  process.env.NODE_ENV ?? "development",
+  process.cwd(),
+  "",
+);
+
+export default defineConfig({
+  output: "server",
+  adapter: vercel(),
+  integrations: [
+    react(),
+    sanity({
+      projectId: PUBLIC_SANITY_PROJECT_ID,
+      dataset: PUBLIC_SANITY_DATASET || "production",
+      useCdn: false,
+      studioBasePath: "/studio",
+      stega: { studioUrl: "/studio" },
+    }),
+  ],
+  vite: {
+    resolve: {
+      alias: { "@": path.join(root, "src") },
+    },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          loadPaths: [path.join(root, "src/styles")],
+        },
+      },
+    },
+  },
+  // BUILD.md phase 8: cmsRedirects from settings.redirects, like next.config.mjs
+});

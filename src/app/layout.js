@@ -4,6 +4,7 @@ import { PrismicPreview } from "@prismicio/next";
 import { repositoryName } from "@/prismicio";
 import { site } from "@/lib/site";
 import { getSiteDefaults, getSiteIcons, getThemeColor } from "@/lib/metadata";
+import Animations from "@/components/Animations";
 import CustomCode from "@/components/CustomCode";
 import GridOverlay from "@/components/GridOverlay";
 import SmoothScroll from "@/components/SmoothScroll";
@@ -48,6 +49,7 @@ export default function RootLayout({ children }) {
           {children}
         </main>
         <SmoothScroll />
+        <Animations />
         <GridOverlay />
         <PrismicPreview repositoryName={repositoryName} />
         <CustomCode position="body-end" />

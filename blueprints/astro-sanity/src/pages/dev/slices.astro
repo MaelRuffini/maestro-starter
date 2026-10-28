@@ -1,0 +1,16 @@
+---
+/**
+ * Dev-only mocks gallery. 404 in production.
+ * BUILD.md phase 4: glob src/slices/*/mocks.json, skip _template,
+ * render via PageBuilder. Query ?slice=hero isolates one.
+ */
+import Layout from "@/layouts/Layout.astro";
+
+if (import.meta.env.PROD) {
+  return new Response(null, { status: 404 });
+}
+---
+
+<Layout title="Slices">
+  <p>Galerie /dev/slices — à brancher en phase 4 (BUILD.md).</p>
+</Layout>

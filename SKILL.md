@@ -29,7 +29,7 @@ official Prismic skill and the CLI itself: `npx prismic --help`,
 | Styles          | **Sass** (`.scss`), BEM, design tokens as custom properties                  | Detailed in §4. No CSS Modules, no Tailwind, no CSS-in-JS.                                                                                                   |
 | Package manager | npm                                                                          |                                                                                                                                                              |
 | Hosting         | Vercel                                                                       |                                                                                                                                                              |
-| Animation       | GSAP + Lenis, **opt-in per slice**                                           | `settings.panel_animation`. Panel parallax only unless asked for more.                                                                                       |
+| Animation       | GSAP (ScrollTrigger + SplitText) + Lenis, **off until a project picks**      | `src/animations.config.js` maps roles to animations; `settings.panel_animation` stays per slice (§3.8). Nothing animated unless chosen.                      |
 
 ---
 
@@ -127,7 +127,7 @@ Every slice is wrapped in `SliceSection`. That is the page shell — do not inve
 another:
 
 ```
-<section data-slice-type="…" class="[.u-theme-*]">          ← theme
+<section data-slice-type="…" class="slice-section [.u-theme-*]">  ← theme
   <div class="container">
     <div class="<block>__wrapper [.u-pt-*] [.u-pb-*]">     ← padding
       …slice content…
@@ -158,6 +158,9 @@ Reuse the shared components. Do not duplicate them inside a slice:
   so extra CMS blocks become lines, not flex siblings. Use
   `<SliceTitle field={title} className="<block>__title h2" />`.
   Hero (page title) passes `fallbackTag="h1"`; other slices default to `h2`.
+  Motion is not a slice concern: the `title` role of `src/animations.config.js`
+  decides (§3.8). `animation={false}` opts one title out, `animation="<name>"`
+  forces one. `SliceTitle` stays a server component.
 - **Prose** (`src/components/Prose.jsx`) — editorial rich text **body**. There,
   heading level and default size stay linked (`heading1`→`.h1` … `heading6`→`.h6`)
   because the editor is ranking subsections, not applying a slice lockup.
@@ -168,6 +171,9 @@ Reuse the shared components. Do not duplicate them inside a slice:
   model video as Prismic media or Embed. Decorative autoplay backgrounds use a
   native muted looping `<video>`, not VideoPlayer.
 - **GridOverlay** — already mounted in `layout.js` (toggle with Shift+G). Not used
+  inside slices.
+- **Animations** — already mounted in `layout.js`, after `SmoothScroll`. The one
+  client component that runs every `data-animate` element (§3.8). Not used
   inside slices.
 
 Then:
@@ -317,11 +323,25 @@ npx prismic field add boolean settings.panel_animation --to-slice $S --label "Pa
 no padding class. Editors control rhythm and theme; slices never hard-code
 vertical padding on their outer wrapper.
 
-`panel_animation` (boolean, off by default) runs the shared GSAP panel
-parallax: trigger = the `<section>`, start `bottom bottom`, end `bottom top`,
-`ease: none`, scrub. Content (`[data-panel=content]`, the wrapper) and, when
-the slice passes `background`, that media (`[data-panel=background]`) both go
-to `y: 60vh`. Skipped when `prefers-reduced-motion` is on. Full-bleed media
+`panel_animation` (boolean, off by default) opts the slice into the `panel`
+role of `src/animations.config.js` (§3.8): a scrubbed GSAP parallax on the
+`<section>`, with `ease: none`. Content (`[data-panel=content]`, the wrapper)
+and, when the slice passes `background`, that media
+(`[data-panel=background]`) move together. Two variants, one switch per
+project (the config value):
+
+| | `parallax-exit` (template default) | `parallax-enter` |
+| --- | --- | --- |
+| Tween | `to` `y: 60vh` | `fromTo` `y: -60vh → 0` |
+| `start` → `end` | `bottom bottom` → `bottom top` | `top bottom` → `top top` |
+| Reads as | content sinks as the section scrolls **away** | content slides **down into place** as the section arrives |
+| Rest state | section gone | `y: 0`: exactly the CSS layout |
+
+`enter` is the better pick for a new project: its end state is the CSS layout,
+so it screenshots clean against Figma. The section gets
+`.slice-section--panel` (`overflow: hidden`) so the travel never paints over a
+neighbour: do not enable the panel on a slice that must overflow its box (a
+card hanging out). Skipped when `prefers-reduced-motion` is on. Full-bleed media
 belongs in SliceSection’s `background` prop, not inside the wrapper.
 
 Prismic Select fields cannot be marked required: the Page Builder always offers a
@@ -406,6 +426,8 @@ Builder unless asked. After go, **do not duplicate work** (§3.5.2).
      body copy has **no extra class** unless
      the design is a lead (`.text-large`) or muted (`.text-muted`);
    - `settings` values for **mocks** (model default stays Main);
+   - animation: nothing to say unless this slice deviates from the project's
+     `animations.config.js` (then one line: none / `<name>`, §3.8);
    - **open questions** (name, variations, grid, anything unclear).
      Then wait. A screenshot request can live in that same message.
 7. After go: stay on **`main`**. `git switch main` if needed. Never
@@ -679,6 +701,87 @@ Rules:
   "which fields?" — and whether the target type exists (install the recipe
   first, §5) or must be created.
 
+### 3.8 Animations (opt-in, chosen once per project)
+
+Nothing is animated until a project picks. The template ships the building
+blocks; a project switches them on in **one file**, and slices are never
+edited for it.
+
+```
+src/animations.config.js         # role → animation name (the project switch)
+src/lib/animate.js               # animate(role, override) → { "data-animate": name } | {}  (server-safe)
+src/lib/animations/index.js      # registry: name → lazy import
+src/lib/animations/<name>.js     # one module per animation: init(element) → cleanup
+src/components/Animations.jsx    # client controller, mounted once in layout.js
+src/styles/components/animations.scss   # hidden-until-ready rules
+```
+
+How it flows: a shared component spreads `{...animate("<role>")}` on its
+element. If the config gives that role an animation, the server emits
+`data-animate="<name>"`; otherwise nothing is emitted. `Animations` scans
+`[data-animate]` on mount and on each navigation, lazy-loads only the modules
+named, and calls `init(element)`. Cleanups revert on navigation (no leaked
+ScrollTriggers). Unused animations — including `SplitText` — are never
+downloaded.
+
+**Roles** (hooks emitted by shared components — do not add one per slice):
+
+| Role | Emitted by | Animations |
+| --- | --- | --- |
+| `title` | `SliceTitle` | `split-words` |
+| `panel` | `SliceSection`, only when `settings.panel_animation` is On | `parallax-exit`, `parallax-enter` |
+
+**Animations**
+
+| Name | What | Values |
+| --- | --- | --- |
+| `split-words` | Words fade in and unblur one after the other, played once | `1.4s`, `power3.out`, `0.07s` stagger, `opacity 0 → 1`, `blur(16px) → 0`, `top 85%`, `once` |
+| `parallax-exit` | Panel content sinks as the section leaves (§3.4) | scrubbed, `ease: none`, `y: 60vh` |
+| `parallax-enter` | Panel content slides into place as the section arrives (§3.4) | scrubbed, `ease: none`, `y: -60vh → 0` |
+
+Easing rule: **played** = `power3.out`, long (0.6–1.4s). **Scrubbed** =
+`none` (the scrollbar is the ease; any curve feels laggy). **Hover / UI** (CSS)
+= `--transition-easing` and `--transition-duration[-fast]`, never a literal.
+
+**Choosing.** The user says it in plain words ("titles reveal word by word,
+panel enter on the hero, everything else static"). The agent edits
+`src/animations.config.js`: `title: "split-words"`, `panel: "parallax-enter"`.
+Per slice, the brief carries one line — *Animation: default (config) / none /
+`<name>`* — and the agent maps it to the component's `animation` prop. Ask
+once at project start (§9) instead of per slice.
+
+**Adding an animation**
+1. `src/lib/animations/<name>.js`: default export `init(element) → cleanup`.
+   Build inside `gsap.context(…, element)` and return `() => ctx.revert()`
+   (and revert anything else it changed, e.g. `split.revert()`).
+2. One line in `src/lib/animations/index.js`.
+3. If it starts from an invisible state, one selector in
+   `src/styles/components/animations.scss`, inside the existing
+   `(scripting: enabled) and (prefers-reduced-motion: no-preference)` media
+   query. Content must stay visible without JS and under reduced motion.
+4. If it needs a new role, add the key to `animations.config.js` and spread
+   `animate("<role>")` in **one shared component**, not in a slice.
+5. `npm run lint`, then check the result with reduced motion on and off.
+
+**Rules**
+- No `"use client"` on a shared component to animate it. The motion runs from
+  `Animations`; `SliceTitle` and `SliceSection` stay server components.
+- Reduced motion: `Animations` never calls `init`, so there is no split, no
+  tween and no hidden state. Lenis smoothing is off too, and the CSS duration
+  tokens collapse to `0.01s`.
+- `animate()` only emits the attribute when an animation is on: the hide CSS
+  can never hide an element nothing will reveal.
+- Animate `transform` and `opacity`. `filter` only while it plays
+  (`clearProps: "filter"`).
+- A `split-words` target holds text and inline spans only, and its text must
+  not change after mount. Prismic live preview re-renders can fight a split
+  heading: check it in Preview the first time a project turns it on.
+- A panel slice moves its content while the section arrives, so a title
+  inside it can reveal earlier or later than it looks. Check it visually the
+  first time a slice uses both; add a `start` option then, not before.
+- Smooth scroll (Lenis) is always on. `SmoothScroll` calls `ScrollTrigger.update`
+  on every Lenis tick: required, or scrubs drift.
+
 ---
 
 ## 4. CSS convention
@@ -807,6 +910,30 @@ do not recopy the list here.
   file: `@media (max-width: $bp-tablet-max)` then `@media (max-width: $bp-mobile)`.
 - `rem` everywhere (root font-size is fluid, see `sizes.scss`). No `px` except
   `1px` borders. Full-bleed covers may use `100svh` / `100vw`.
+- **Stacking checklist for any full-bleed media.**
+  1. The parent of an `absolute` element must be positioned. `.slice-section`
+     (`SliceSection`) is `position: relative; z-index: 5` whatever tag `as`
+     renders; the global `section` rule only matches a `<section>`, so a footer
+     or header relied on it and lost its background. Never rely on the tag. An
+     image that disappears or covers the wrong area almost always means the
+     wrong containing block (check it in devtools).
+  2. Absolute siblings paint above non-positioned in-flow siblings. Content over
+     media is positioned **and** above the media: `.slice-section__content`
+     (`relative`, `z-index: 1`) or `.container--raised`.
+  3. Media layer: `.slice-section__background` (`absolute`, `inset: 0`,
+     `z-index: 0`, `overflow: hidden`, `pointer-events: none`), a sibling of
+     `.container`, not a child of the wrapper, so the panel tween moves it
+     separately.
+  4. A themed `background-color` on the section is the fallback behind the
+     image (no image, loading, `object-fit` letterbox). `.slice-section` sets it.
+  5. `overflow: hidden`, `z-index` and `transform` create stacking contexts. A
+     panel section is one. A child cannot rise above a sibling section from
+     inside it.
+  6. Image: `absolute; inset: 0; width: 100%; height: 100%; object-fit: cover`.
+     With `next/image`: `sizes="100vw"`, `fallbackAlt=""` (decorative), and
+     `priority` only above the fold.
+  7. No `z-index` above the shell's `5` inside a slice. Layer inside the slice's
+     own stacking context.
 - **Full-bleed media.** `SliceSection` stays `section > .container > wrapper`.
   Do not invent a second shell. When the image must fill the viewport:
   `containerClassName="container--no-padding"` so the wrapper is full-width,
@@ -1003,7 +1130,8 @@ Check every slice against this list before handing over:
       Custom controls must show focus.
 - [ ] **Keyboard**: everything reachable and operable with Tab/Enter/Space; no
       hover-only content.
-- [ ] **Motion**: respect `prefers-reduced-motion` (tokens already zero durations).
+- [ ] **Motion**: respect `prefers-reduced-motion` (tokens already zero durations;
+      `Animations` skips every GSAP animation, §3.8). Content visible without JS.
 - [ ] **Language**: `<html lang>` is set from `site.lang`; content in another
       language gets `lang` on its element.
 - [ ] **Target size**: interactive elements ≥ 24×24 CSS px.
@@ -1146,11 +1274,14 @@ Mechanical steps are a **script**, not an AI task.
      template's local models.
    - Re-pointing an existing project later is the same command without
      `--push`; then `npx prismic status` tells you what differs.
-5. In the Page Builder: create and publish a **Homepage** document. `npm run dev`
+5. **Choose the motion** (§3.8). Ask once: titles (`split-words` or none), panel
+   (`parallax-enter`, `parallax-exit`, or none). Edit `src/animations.config.js`.
+   Default = none.
+6. In the Page Builder: create and publish a **Homepage** document. `npm run dev`
    → `/` renders it; `/dev/slices` renders the mocks. Create the **Settings**
    document too (SEO defaults, favicon + Apple touch icon + theme color; the
    client fills Custom code and Redirects later, §5).
-6. Later, for production: follow **§12** (Vercel, domains, Prismic previews and
+7. Later, for production: follow **§12** (Vercel, domains, Prismic previews and
    webhooks). Set `PRISMIC_ACCESS_TOKEN` only if the API is private.
 
 Troubleshooting `push`: run `npx prismic status` first; uncommitted changes to
@@ -1216,7 +1347,16 @@ tree and reconcile.
 - Shipping a slice after “checking `/dev/slices`” without reading a localhost
   PNG against the Figma screenshot (§3.6). Do not add Playwright, Percy, or a
   pixel-diff for this.
-- Extending the MVP scope (animations, SEO agents, header/footer) without being asked.
+- Enabling an animation by default (a role set in `animations.config.js` that
+  the user did not choose), or animating from inside a slice or a slice's own
+  `"use client"` component instead of adding an animation to the registry (§3.8).
+  Adding `"use client"` to `SliceTitle` or `SliceSection`. Emitting
+  `data-animate` by hand: use `animate()`, so the hidden-until-ready CSS never
+  hides content nothing will reveal.
+- Relying on the `section` tag for positioning or background. The shell is
+  `.slice-section` (§4.4); a footer or header rendered with `as=` needs it.
+- Extending the MVP scope (new animations beyond the registry, SEO agents,
+  header/footer) without being asked.
 
 ---
 

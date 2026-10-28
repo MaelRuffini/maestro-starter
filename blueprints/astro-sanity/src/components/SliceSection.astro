@@ -1,0 +1,70 @@
+---
+/**
+ * Shared structure for every slice: section → .container → wrapper.
+ * Reads slice.settings (sliceSettings object) and maps to .u-pt-* /
+ * .u-pb-* / .u-theme-* plus the opt-in panel parallax.
+ *
+ * Full-bleed media goes in slot="background".
+ *
+ * Port of src/components/SliceSection.jsx — keep class names identical
+ * so the copied slice-section.scss works without edits.
+ */
+import { animate } from "@/lib/animate.js";
+import "@/styles/components/slice-section.scss";
+
+const toToken = (value = "") =>
+  value.split(" (")[0].toLowerCase().replaceAll(" ", "-");
+
+const {
+  slice,
+  settings: settingsProp,
+  class: className,
+  containerClass,
+  wrapperClass,
+  as: Tag = "section",
+} = Astro.props;
+
+const settings = settingsProp ?? slice?.settings ?? {};
+const { padding_top, padding_bottom, theme, panel_animation } = settings;
+
+const panel = panel_animation === true ? animate("panel") : {};
+const panelEnabled = "data-animate" in panel;
+
+const sectionClass = [
+  "slice-section",
+  theme && theme !== "Inherit" && `u-theme-${toToken(theme)}`,
+  panelEnabled && "slice-section--panel",
+  className,
+]
+  .filter(Boolean)
+  .join(" ");
+
+const wrapperClasses = [
+  wrapperClass,
+  Astro.slots.has("background") && "slice-section__content",
+  padding_top && padding_top !== "None" && `u-pt-${toToken(padding_top)}`,
+  padding_bottom && padding_bottom !== "None" && `u-pb-${toToken(padding_bottom)}`,
+]
+  .filter(Boolean)
+  .join(" ");
+---
+
+<Tag
+  class={sectionClass}
+  data-slice-type={slice?._type}
+  data-panel={panelEnabled ? "root" : undefined}
+  {...panel}
+>
+  {
+    Astro.slots.has("background") && (
+      <div class="slice-section__background" data-panel="background">
+        <slot name="background" />
+      </div>
+    )
+  }
+  <div class:list={["container", containerClass]}>
+    <div class={wrapperClasses} data-panel="content">
+      <slot />
+    </div>
+  </div>
+</Tag>

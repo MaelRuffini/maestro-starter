@@ -1,0 +1,17 @@
+// Hidden-until-ready, for animations that start from an invisible state.
+// The server HTML is plain text; without this it would flash before the
+// animation takes over. `components/Animations.jsx` sets `data-animate-ready`
+// once the animation has initialised (the words are then at opacity 0 and
+// carry the hidden state themselves).
+
+// The media query is the safety net: no JS (`scripting: none`) or reduced
+// motion never match, so content is always visible for them. `animate()` only
+// emits `data-animate` when an animation is on, so this never hides content
+// in a project that did not choose one.
+
+// Add one selector per animation that hides its element before it starts.
+@media (scripting: enabled) and (prefers-reduced-motion: no-preference) {
+  [data-animate="split-words"]:not([data-animate-ready]) {
+    opacity: 0;
+  }
+}

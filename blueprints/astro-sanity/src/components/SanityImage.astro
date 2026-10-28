@@ -1,0 +1,27 @@
+---
+/**
+ * CMS image. `sizes` is required. `alt` comes from the schema field
+ * (empty string = decorative). Above-the-fold: pass priority.
+ */
+import { urlFor } from "@/lib/image.js";
+import { isFilled } from "@/lib/filled.js";
+
+const { image, sizes, class: className, priority = false } = Astro.props;
+const alt = image?.alt ?? "";
+---
+
+{
+  isFilled.image(image) && (
+    <img
+      class={className}
+      src={urlFor(image).width(1600).url()}
+      srcset={[400, 800, 1200, 1600, 2400]
+        .map((w) => `${urlFor(image).width(w).url()} ${w}w`)
+        .join(", ")}
+      sizes={sizes}
+      alt={alt}
+      loading={priority ? "eager" : "lazy"}
+      fetchpriority={priority ? "high" : undefined}
+    />
+  )
+}

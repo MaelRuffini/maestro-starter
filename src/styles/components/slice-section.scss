@@ -1,3 +1,15 @@
+// Shell of every slice: positioning context for the absolute background and
+// the stacking layer, whatever tag `as` renders. The global `section` rule
+// (base.scss) only matches a <section>, so a footer or header would lose its
+// background and its theme without this. `:where()` keeps specificity at zero,
+// so a slice's own class can still override any of it.
+:where(.slice-section) {
+  position: relative;
+  z-index: 5;
+  background-color: var(--col-background);
+  color: var(--col-text);
+}
+
 // Full-bleed media slot on the section (sibling of .container). Absolute
 // siblings paint above in-flow content; .slice-section__content raises it.
 .slice-section__background {

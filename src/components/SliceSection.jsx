@@ -1,4 +1,4 @@
-import PanelSection from "./PanelSection";
+import { animate } from "@/lib/animate";
 import "@/styles/components/slice-section.scss";
 
 // Maps a Prismic select value to a CSS token, ignoring any hint suffix:
@@ -13,7 +13,12 @@ export const joinClasses = (...classes) =>
  * Shared structure for every slice: section → .container → wrapper div.
  * Reads the non-repeatable `settings` group of the slice (padding_top,
  * padding_bottom, theme, panel_animation) and maps it to the .u-pt-* /
- * .u-pb-* / .u-theme-* utilities and the opt-in GSAP panel parallax.
+ * .u-pb-* / .u-theme-* utilities and the opt-in panel parallax. The parallax
+ * itself is the `panel` role of `src/animations.config.js`, run by
+ * `components/Animations.jsx`.
+ *
+ * `.slice-section` is the positioning context and stacking layer of every
+ * slice, whatever tag `as` renders (a footer, a header).
  *
  * Usage inside a slice:
  *   <SliceSection slice={slice} wrapperClassName="hero__wrapper">
@@ -56,9 +61,14 @@ export default function SliceSection({
 }) {
   const settings = settingsProp ?? slice?.primary?.settings?.[0] ?? {};
   const { padding_top, padding_bottom, theme, panel_animation } = settings;
-  const panelEnabled = panel_animation === true;
+
+  // Empty when the editor left Panel animation off, or the project's config
+  // has no `panel` animation.
+  const panel = panel_animation === true ? animate("panel") : {};
+  const panelEnabled = "data-animate" in panel;
 
   const sectionClasses = joinClasses(
+    "slice-section",
     theme && theme !== "Inherit" && `u-theme-${toToken(theme)}`,
     panelEnabled && "slice-section--panel",
     className,
@@ -74,13 +84,11 @@ export default function SliceSection({
   );
 
   return (
-    <PanelSection
-      as={Tag}
-      enabled={panelEnabled}
+    <Tag
       data-slice-type={slice?.slice_type}
       data-slice-variation={slice?.variation}
-      data-panel={panelEnabled ? "section" : undefined}
       className={sectionClasses}
+      {...panel}
       {...props}
     >
       {background ? (
@@ -99,6 +107,6 @@ export default function SliceSection({
           {children}
         </div>
       </div>
-    </PanelSection>
+    </Tag>
   );
 }

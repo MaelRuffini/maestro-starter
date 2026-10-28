@@ -1,0 +1,9 @@
+node_modules
+dist
+.astro
+.env
+.env.local
+.vercel
+.worktrees
+.maestro-slack.json
+.DS_Store

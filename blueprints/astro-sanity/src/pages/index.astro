@@ -1,0 +1,18 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PageBuilder from "@/components/PageBuilder.astro";
+import { loadQuery } from "@/lib/load-query.js";
+import { homepageQuery } from "@/lib/queries.js";
+
+const { data: homepage } = await loadQuery({ query: homepageQuery });
+---
+
+<Layout title={homepage?.seo?.meta_title} description={homepage?.seo?.meta_description}>
+  {
+    homepage ? (
+      <PageBuilder slices={homepage.slices} />
+    ) : (
+      <p>Créez et publiez le document Homepage dans /studio.</p>
+    )
+  }
+</Layout>
