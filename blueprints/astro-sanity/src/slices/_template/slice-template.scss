@@ -1,9 +1,0 @@
-@use "base/breakpoints" as *;
-
-.slice-template {
-  &__wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: var(--size-4);
-  }
-}

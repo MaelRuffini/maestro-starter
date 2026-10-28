@@ -3,6 +3,10 @@
  * Append one slice variation from mocks.json (or stdin) onto a Prismic page
  * as a Migration Release draft. Does not publish.
  *
+ * Image bytes are sniffed: a PNG stays a PNG (transparency kept). Each image
+ * field must have `alt` (a description, or "" when decorative). That alt is
+ * written on the media library asset.
+ *
  *   npm run prismic:fill -- --slice Cover
  *   npm run prismic:fill -- --slice Cover --variation cardRight
  *   npm run prismic:fill -- --slice Cover --document page --uid about
@@ -48,32 +52,147 @@ const isMediaLink = (node) =>
   typeof node.url === "string" &&
   node.url.startsWith("http");
 
+const isRichTextImage = (node) =>
+  isImageField(node) && node.type === "image";
+
+const EXT_BY_TYPE = {
+  "image/png": "png",
+  "image/jpeg": "jpg",
+  "image/gif": "gif",
+  "image/webp": "webp",
+  "image/svg+xml": "svg",
+};
+
+/**
+ * Sniff the real file type. A PNG stays PNG so transparency is not flattened
+ * because the URL had no extension.
+ *
+ * @param {Uint8Array} bytes
+ */
+const sniffImageType = (bytes) => {
+  if (
+    bytes.length >= 8 &&
+    bytes[0] === 0x89 &&
+    bytes[1] === 0x50 &&
+    bytes[2] === 0x4e &&
+    bytes[3] === 0x47
+  ) {
+    return "image/png";
+  }
+  if (bytes.length >= 3 && bytes[0] === 0xff && bytes[1] === 0xd8 && bytes[2] === 0xff) {
+    return "image/jpeg";
+  }
+  if (
+    bytes.length >= 6 &&
+    bytes[0] === 0x47 &&
+    bytes[1] === 0x49 &&
+    bytes[2] === 0x46 &&
+    bytes[3] === 0x38
+  ) {
+    return "image/gif";
+  }
+  if (
+    bytes.length >= 12 &&
+    bytes[0] === 0x52 &&
+    bytes[1] === 0x49 &&
+    bytes[2] === 0x46 &&
+    bytes[3] === 0x46 &&
+    bytes[8] === 0x57 &&
+    bytes[9] === 0x45 &&
+    bytes[10] === 0x42 &&
+    bytes[11] === 0x50
+  ) {
+    return "image/webp";
+  }
+  return null;
+};
+
+/**
+ * Download the mock file and register it with an explicit filename and alt.
+ * Prismic copies `alt` onto the media library asset.
+ *
+ * @param {Record<string, unknown>} node
+ * @param {ReturnType<typeof prismic.createMigration>} migration
+ * @param {{ requireAlt: boolean, label: string, seen: Map<string, unknown>, index: { n: number } }} ctx
+ */
+const uploadAsset = async (node, migration, ctx) => {
+  if (ctx.requireAlt && (typeof node.alt !== "string")) {
+    throw new Error(
+      `Image is missing alt (${ctx.label}). Set alt to a short description, or "" if the image is decorative.`,
+    );
+  }
+
+  const url = node.url.split("?")[0];
+  const seen = ctx.seen.get(url);
+  if (seen) return seen;
+
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Could not download ${url} (${response.status}). Re-export it from Figma and update the mock URL.`);
+  }
+  const bytes = new Uint8Array(await response.arrayBuffer());
+  const headerType = response.headers.get("content-type")?.split(";")[0]?.trim();
+  const type = sniffImageType(bytes) || (headerType?.startsWith("image/") ? headerType : null) || "application/octet-stream";
+  const ext = EXT_BY_TYPE[type] || "bin";
+  ctx.index.n += 1;
+  const filename = `${ctx.label}-${ctx.index.n}.${ext}`;
+  const file = new File([bytes], filename, { type });
+  const alt = typeof node.alt === "string" && node.alt ? node.alt : undefined;
+  const credits = typeof node.copyright === "string" && node.copyright ? node.copyright : undefined;
+  const asset = migration.createAsset(file, filename, { alt, credits });
+  ctx.seen.set(url, asset);
+  console.log(`  ${filename}${alt ? ` — alt: ${alt}` : " — no alt (decorative)"}`);
+  return asset;
+};
+
 /**
  * Replace mock image / media URLs with Migration asset refs.
  *
  * @param {unknown} node
  * @param {ReturnType<typeof prismic.createMigration>} migration
+ * @param {{ label: string, seen: Map<string, unknown>, index: { n: number } }} ctx
  */
-const replaceAssets = (node, migration) => {
+const replaceAssets = async (node, migration, ctx) => {
   if (Array.isArray(node)) {
-    return node.map((item) => replaceAssets(item, migration));
+    const next = [];
+    for (const item of node) next.push(await replaceAssets(item, migration, ctx));
+    return next;
   }
   if (!node || typeof node !== "object") return node;
 
-  if (isImageField(node) || isMediaLink(node)) {
-    return migration.createAsset(node);
+  if (isRichTextImage(node)) {
+    const asset = await uploadAsset(node, migration, { ...ctx, requireAlt: true });
+    return { type: "image", id: asset };
   }
 
-  const next = Array.isArray(node) ? [...node] : { ...node };
+  if (isMediaLink(node)) {
+    const asset = await uploadAsset(node, migration, { ...ctx, requireAlt: false });
+    return {
+      link_type: "Media",
+      id: asset,
+      ...(typeof node.text === "string" ? { text: node.text } : {}),
+    };
+  }
+
+  if (isImageField(node)) {
+    return uploadAsset(node, migration, { ...ctx, requireAlt: true });
+  }
+
+  const next = { ...node };
   for (const [key, value] of Object.entries(next)) {
-    next[key] = replaceAssets(value, migration);
+    next[key] = await replaceAssets(value, migration, ctx);
   }
   return next;
 };
 
-const toMigrationSlice = (raw, migration) => {
-  const primary = replaceAssets(structuredClone(raw.primary ?? {}), migration);
-  const items = replaceAssets(structuredClone(raw.items ?? []), migration);
+const toMigrationSlice = async (raw, migration) => {
+  const ctx = {
+    label: `${raw.slice_type || "slice"}-${raw.variation || "default"}`,
+    seen: new Map(),
+    index: { n: 0 },
+  };
+  const primary = await replaceAssets(structuredClone(raw.primary ?? {}), migration, ctx);
+  const items = await replaceAssets(structuredClone(raw.items ?? []), migration, ctx);
   return {
     slice_type: raw.slice_type,
     variation: raw.variation,
@@ -182,7 +301,7 @@ try {
 }
 
 const mock = await loadMockSlice();
-const slice = toMigrationSlice(mock, migration);
+const slice = await toMigrationSlice(mock, migration);
 const slices = [...(page.data.slices ?? []), slice];
 
 migration.updateDocument({

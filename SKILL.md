@@ -281,10 +281,44 @@ Then:
 ### 3.3 Mocks (`mocks.json`)
 
 An array of slice objects (`slice_type`, `variation`, `primary`, `items: []`), one
-per variation, with realistic **French** content and every field filled. Images use
-`https://images.prismic.io/…` URLs (allowed by `next.config.mjs`). Video fields are
+per variation, with realistic **French** content and every field filled. Video fields are
 web Links (`link_type: "Web"`, hosted URL), not Prismic media. Rich text is an
 array of blocks; group fields are arrays of objects; `settings` is a one-item array.
+
+**Images come from the Figma frame**, not from Unsplash or a stock Prismic sample,
+whenever the frame has the asset. Raster assets are exported at **2×** so the
+site stays sharp on retina. Call `download_assets` with `defaultScale: 2`.
+Do not export at scale 1. Structural icons that are inlined as SVG stay SVG;
+they are not rasterized.
+
+- **Which file.** If `rawImages` for that fill is already at least twice as
+  wide as the image is shown in the frame, use that original: it is sharper
+  than a 2× render of the node. Otherwise use the `export` from
+  `defaultScale: 2`.
+- **PNG with transparency.** If the source `format` is `png`, or the image
+  has transparent pixels, pass `defaultFormat: "png"` with the 2× scale. The
+  mock URL and the file uploaded to Prismic stay PNG. Do not pass
+  `defaultFormat: "jpg"` and do not flatten the image onto a background.
+  `npm run prismic:fill` sniffs the bytes and names the media library file
+  `.png` when the file is a PNG. An opaque photo whose source is jpeg is
+  `defaultFormat: "jpg"` at 2×.
+- **Rotation.** The 2× file is the unrotated image. If the node's `rotation`
+  is not 0, do not export the tilted render: that bitmap is the axis-aligned
+  box, so corners are cut off or the tilt is baked into the pixels. Prefer
+  `rawImages` when it is already ≥ 2× the displayed width. Otherwise set
+  rotation to 0 with `use_figma`, export at `defaultScale: 2`, then restore
+  the rotation before you finish. If the layout still needs the tilt, rotate
+  in CSS.
+- **Alt.** Every image field in the mock has `alt`. Informative images: one
+  short sentence in the site language describing what is shown. Decorative
+  images: `""`. `prismic:fill` writes that same alt onto the **media library
+  asset**. An image with no `alt` property is refused.
+
+The mock `url` is that 2× file. `/dev/slices` loads it through
+`next/image`, which only allows hosts listed in `next.config.mjs`
+`images.remotePatterns` (Prismic by default). When the host is missing, add
+that hostname there so the gallery can render the file. Refresh the URL at
+build time if an earlier `download_assets` link has expired.
 
 Mocks drive the local gallery `http://localhost:3000/dev/slices`
 (`?slice=<folder or slice_type>` to isolate one). This route is dev-only.
@@ -374,8 +408,13 @@ frame or **several** (§3.5.1). The first deliverable is a **brief** with
 questions, not code. Do not create a branch, a model, or files until the user
 says **go**. A single slice is committed on **`main`**, then `npx prismic push`
 and `git push origin main`. A batch commits each slice locally and pushes once
-at the end. List what only the human can finish (CMS) — do not fill the Page
-Builder unless asked. After go, **do not duplicate work** (§3.5.2).
+at the end. **Ask every time** whether to add the content to Prismic, and on
+which document (type + uid, or the homepage). A bare **go** does not answer
+that question: do not run `prismic:fill` until they say yes and name the
+document. The same question applies to anything else that would write content
+(a new page, a custom-type document, a media upload) — models pushed with
+`npx prismic push` are the slice structure, not this question. After go, **do
+not duplicate work** (§3.5.2).
 
 1. Read the Figma frame from the current selection or a link, the screenshot,
    or the written brief. Call `get_screenshot` and `get_metadata`. Call
@@ -429,7 +468,10 @@ Builder unless asked. After go, **do not duplicate work** (§3.5.2).
    - animation: nothing to say unless this slice deviates from the project's
      `animations.config.js` (then one line: none / `<name>`, §3.8);
    - **open questions** (name, variations, grid, anything unclear).
-     Then wait. A screenshot request can live in that same message.
+     Always include: **Add this content to Prismic? If yes, which document?**
+     (homepage, or type + uid). One question covers a batch unless slices
+     go to different documents. Then wait. A screenshot request can live in
+     that same message.
 7. After go: stay on **`main`**. `git switch main` if needed. Never
     `git switch -c feat/slice-<kebab-name>`. Never open a pull request.
     **The parent builds** unless §3.5.2 says to spawn `dev-slice`. Pass the
@@ -478,10 +520,12 @@ Builder unless asked. After go, **do not duplicate work** (§3.5.2).
     Do not add Page Builder content. Models are already pushed (step 13);
     drop the push line. If push failed, keep it and quote the error.
 
-    If they asked to **fill Prismic** (or the conversation is Slack, §11):
-    models are already pushed; run
+    If they said **yes, add it** and named the document (or the conversation is
+    Slack, §11): models are already pushed; run
     `npm run prismic:fill -- --slice <Name>` (optional `--variation`, `--document page --uid <uid>`).
     That appends the mock (or stdin JSON) onto the page as a **Migration Release**.
+    Images are the Figma files at 2× (§3.3): PNG stays PNG, rotated nodes are
+    uploaded unrotated, and each asset gets the mock `alt`.
     Never `publishMigrationRelease()`. Drop the Page Builder fill line and list:
 
     ```
@@ -525,9 +569,10 @@ the wider one as the slice and attach the narrower one as its stack reference.
 3. **One batch brief, then stop.** Numbered mini-briefs (each = §3.5 step 6),
    in visual order. REUSE items are skips, not builds — they do not cancel the
    rest. Shared questions once (one grid screenshot if the frames are
-   grid-aligned; variation defaults). A bare **go** accepts names, fields,
-   layout and mocks padding as written, and ships **the frame only** (no extra
-   variations). Do not ask for a second go per slice.
+   grid-aligned; variation defaults; **add the content to Prismic, and on
+   which document?**). A bare **go** accepts names, fields, layout and mocks
+   padding as written, and ships **the frame only** (no extra variations).
+   It does not authorize `prismic:fill`. Do not ask for a second go per slice.
 4. After that one go, queue the non-REUSE slices top to bottom. Build **at
    most three at a time**. Each build is a fresh `dev-slice` in its own
    detached worktree, with only its packet. The parent does not write these
@@ -565,7 +610,9 @@ the wider one as the slice and attach the narrower one as its stack reference.
    (every `/dev/slices?slice=` link, in order).
 
 Slack (§11) uses the same batch. The client pastes several frame URLs. Fill
-runs after the single push, one `prismic:fill` per built slice.
+runs after the single push, one `prismic:fill` per built slice, onto the
+document named in the thread (homepage when they did not name one). In
+Cursor, fill still waits for the yes and the document from the brief.
 
 ### 3.5.2 Speed (do not duplicate work)
 
@@ -1167,6 +1214,12 @@ Check every slice against this list before handing over:
   is good at generating **new** code and bad at surgical edits. To change an
   existing slice, edit the code directly; do not regenerate it from Figma.
 - Everything that is text, image or link in the frame becomes a Prismic field.
+- Content images are the frame's own files at **2×** (§3.3): `download_assets`
+  with `defaultScale: 2` (the original upload when it is already at least
+  that wide). A PNG with transparency is exported as a transparent PNG. A
+  rotated image is exported unrotated. Each file gets an `alt` in the mock,
+  and that alt is written on the Prismic media library asset when the slice
+  is filled.
 
 ### 8.1 Other sources: a live URL, a prototype's code, a screenshot
 
@@ -1315,6 +1368,12 @@ tree and reconcile.
   slices). Pushing on every slice inside a batch.
 - Calling `publishMigrationRelease()` or publishing the Migration Release from
   the agent. The human publishes after review.
+- Filling a page, creating a document, or uploading media without asking
+  whether to add it and on which document (§3.5). A bare "go" is not that
+  answer. In Slack the thread's document (or the homepage) is the answer.
+- Exporting a Figma image at scale 1, as a flattened JPEG when the source is
+  a transparent PNG, or as the tilted render of a rotated node so the file
+  is cropped (§3.3). Uploading an image to the media library with no `alt`.
 - Regenerating an existing slice from Figma instead of editing it.
 - Building a slice before the brief is confirmed (no go), or finishing a build
   without the human TODO (§3.5 step 14). A batch still needs that one go.
@@ -1397,11 +1456,13 @@ npm run slack
 Mention `@Maestro` (or `/slice`) with a Figma link. Follow-ups stay in the **thread**.
 Thread → agent id is stored in `.maestro-slack.json` (gitignored).
 
-The agent posts the brief in Slack and **waits for go**. After a single slice
-it commits on `main`, pushes models, and runs
-`npm run prismic:fill -- --slice <Name>`. After a batch it commits each slice,
-pushes once, then fills each built slice. It never opens a pull request and
-never publishes the release.
+The agent posts the brief in Slack and **waits for go**. The brief asks which
+document to fill (homepage if they do not name one). After a single slice it
+commits on `main`, pushes models, and runs
+`npm run prismic:fill -- --slice <Name>` on that document. After a batch it
+commits each slice, pushes once, then fills each built slice. Images follow
+§3.3 (Figma file at 2×, PNG kept, unrotated, alt on the asset). It never opens
+a pull request and never publishes the release.
 
 ### Connect checklist (once, then keep)
 
@@ -1444,8 +1505,14 @@ npm run prismic:fill -- --slice Cover --document page --uid about
 ```
 
 Needs `PRISMIC_WRITE_TOKEN`. Appends `mocks.json` (or `--from-stdin` JSON) onto the
-page. Images are uploaded via `createAsset`. Review the Migration Release in Prismic,
+page. Images are downloaded and uploaded with `createAsset`: the filename
+extension follows the file bytes (a PNG stays `.png`, transparency included),
+and the mock `alt` is stored on the media library asset. An image field
+without an `alt` property is refused. Review the Migration Release in Prismic,
 then publish by hand.
+
+In Cursor, do not run this until the user has said yes and named the document
+(§3.5). Slack runs it after the push, onto the document named in the thread.
 
 ---
 

@@ -72,6 +72,11 @@ working tree. The parent copies the slice back with `npm run slice:land`.
   `item.<relation>.data` inline. Start from `examples/slices/Articles` or
   `Testimonials` with `--from`.
 - `mocks.json` with realistic French content, one entry per variation.
+  Image fields use the packet's Figma asset URL, format, and `alt`
+  (`SKILL.md` §3.3). That file is the 2× export (or the original upload when
+  it is already at least twice the displayed width). A PNG stays a PNG URL.
+  A rotated image uses the unrotated file, not a tilted render. Every image
+  has `alt` (a short description, or `""` when decorative).
 - `index.jsx`: server component, `SliceSection` (`section > .container > <block>__wrapper`),
   `isFilled` guards, `SliceTitle` for rich text titles (tag from CMS, size from
   the type class — never hard-code `<h2>`),
@@ -106,8 +111,10 @@ working tree. The parent copies the slice back with `npm run slice:land`.
   `VideoPlayer`); do not add another player.
   No `"use client"` unless a small isolated child component needs interactivity.
 - Never create a slice branch or a pull request. Never `publishMigrationRelease()`.
-- If asked to fill Prismic (single mode, or the parent says the batch push
-  already happened): `npm run prismic:fill -- --slice <Name>`.
+- Fill Prismic only when the parent says the user agreed and names the
+  document (`FILL: homepage` or `FILL: page/<uid>`). Then
+  `npm run prismic:fill -- --slice <Name>` with `--document` and `--uid`
+  when it is not the homepage. Do not fill on a bare go.
 
 ## Output
 

@@ -51,8 +51,12 @@ accessibility and the bootstrap checklist. It is also exposed as a skill at
   spawns `reviewer` only for motion or a non-token color.
 - Brief then go: do not create a slice until the user confirms name, fields and
   layout (`SKILL.md` §3.5). A single slice then `npx prismic push` and a human
-  TODO (CMS). A batch pushes once after the last commit. Slack clients:
-  `SKILL.md` §11 (`npm run slack`, then `prismic:fill`).
+  TODO (CMS). A batch pushes once after the last commit. On every slice (and
+  any other Prismic content), ask whether to add it and on which document
+  before `prismic:fill`. Figma images: export at 2×, transparent PNG stays
+  PNG, rotated images exported unrotated, alt on the media library asset
+  (`SKILL.md` §3.3). Slack clients: `SKILL.md` §11 (`npm run slack`, then
+  `prismic:fill`).
 
 ## Agents and commands
 

@@ -46,7 +46,11 @@ padding, variations); §2 onward does not care where it came from.
 - Do **not** call `get_design_context` unless metadata cannot answer a
   measurement. `get_variable_defs` once for the file.
 - Keep a **packet** per frame (screenshot, measured boxes, fields, layout
-  classes, mock padding, variations). Builders receive only their packet.
+  classes, mock padding, variations, image assets). Raster assets are
+  exported at **2×** (`download_assets` with `defaultScale: 2`, `SKILL.md`
+  §3.3): transparent PNG stays PNG, rotated images are exported unrotated.
+  Use the original upload only when it is already at least twice as wide as
+  the image is shown. Builders receive only their packet.
 - Grid screenshot: if the frames look grid-aligned and the user has not sent
   one with the 12-column layout grid on, ask once (can sit in the brief).
 
@@ -130,9 +134,12 @@ pattern name instead.
 Stop until the user confirms.
 
 **Batch:** post **one** numbered batch brief (`SKILL.md` §3.5.1), top to bottom.
-Each item is a mini-brief. Shared questions once. State that a bare **go**
-accepts the proposals and ships each frame only (no extra variations). Stop
-until the user confirms. Do not require a go per slice.
+Each item is a mini-brief. Shared questions once. Always ask: **Add this
+content to Prismic? If yes, which document?** (homepage, or type + uid). A
+bare **go** accepts the proposals and ships each frame only (no extra
+variations). It does **not** answer the Prismic question — do not fill until
+they say yes and name the document. Stop until the user confirms. Do not
+require a go per slice.
 
 Do **not** start modeling in the same turn as the brief.
 
@@ -192,6 +199,10 @@ passed and a 1440 PNG was compared.
 combined **À finaliser** (every `/dev/slices?slice=` link, in order).
 
 Write it in the user's language. Omit steps already done. Do not open a pull
-request. Do not author Page Builder content unless the user asked (Slack §11:
-`npm run prismic:fill -- --slice <Name>` per built slice, after the single
-push, never publish the release).
+request. Do not author Page Builder content unless they said yes and named
+the document (`SKILL.md` §3.3, §3.5). Then, after the push:
+`npm run prismic:fill -- --slice <Name>` per built slice (`--document` and
+`--uid` when it is not the homepage). Images are the Figma files at 2×
+(transparent PNG stays PNG, rotated images unrotated) and each media library
+asset gets the mock `alt`. Never publish the release. Slack (§11) fills
+after the push onto the document named in the thread.
